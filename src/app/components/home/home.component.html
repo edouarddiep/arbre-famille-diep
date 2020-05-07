@@ -1,0 +1,236 @@
+<h1 class="home-title-hidden" id="homeTitle">
+  Bienvenue sur l'arbre généalogique de la famille Diep
+</h1>
+<div class="snowflakes">
+  <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+</div>
+<!--
+We will create a family tree using just CSS(3)
+The markup will be simple nested lists
+-->
+<div class="tree-hidden" id="tree">
+  <ul>
+    <li>
+      <button mat-button (click)="openDialog($event)" class="home-btn">
+        <a href="#" id="papaAn">
+          <div class="wrapperimg" id="papaAn">
+            <img src="../../../assets/images/papa_an.PNG" id="papaAn" class="img-normal">
+          </div>
+          An DIEP
+          <br />
+          né le 18.10.1920
+          <br />
+          à Saïgon (Viêt Nam)
+          <br />
+          décédé le 10.09.2003
+          <br />
+          à Vungtau (Viêt Nam)
+        </a>
+      </button>
+    </li>
+    <li>
+      <button mat-button (click)="openDialog($event)" class="home-btn">
+        <a href="#" id="mamanLy">
+          <div class="wrapperimg" id="mamanLy">
+            <img src="../../../assets/images/maman_ly.png" id="mamanLy" class="img-bigger-adjusted">
+          </div>
+          Ly DIEP
+          <br />
+          née le 10.11.1924
+          <br />
+          à Saïgon (Viêt Nam)
+          <br />
+          décédée le 12.02.2014
+          <br />
+          à Vungtau (Viêt Nam)
+        </a>
+      </button>
+      <ul>
+        <li>
+          <button mat-button (click)="openDialog($event)" class="home-btn">
+            <a href="#" id="binh">
+              <div class="wrapperimg" id="binh">
+                <img src="../../../assets/images/binh.jpg" id="binh" class="img-slightly-bigger">
+              </div>
+              Vinh-Binh DIEP
+              <br />
+              né le 14.07.1953
+              <br />
+              à Saïgon (Viêt Nam)
+            </a>
+          </button>
+          <ul>
+            <li>
+              <button mat-button (click)="openDialog($event)" class="home-btn">
+                <a href="#" id="kim">
+                  <div class="wrapperimg" id="kim">
+                    <img src="../../../assets/images/kim.jpg" id="kim" class="img-bigger-adjusted">
+                  </div>
+                  Kim DIEP
+                  <br />
+                  née le 12.12.2003
+                  <br />
+                  à Genève
+                </a>
+              </button>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <button mat-button (click)="openDialog($event)" class="home-btn">
+        <a href="#" id="yaya">
+          <div class="wrapperimg" id="yaya">
+            <img src="../../../assets/images/yaya.JPG" id="yaya" class="img-normal">
+          </div>
+          Aikaterini TZIRA
+          <br />
+          née le 24.09.1924
+          <br />
+          à l'île de Folegandros (Grèce)
+          <br />
+          décédée le 30.04.2020
+          <br />
+          à Genève
+        </a>
+      </button>
+      <ul>
+        <li>
+          <button mat-button (click)="openDialog($event)" class="home-btn">
+            <a href="#" id="tina">
+              <div class="wrapperimg" id="tina">
+                <img src="../../../assets/images/maman.JPG" id="tina" class="img-slightly-bigger">
+              </div>
+              Tina TZIRA
+              <br />
+              née le 24.07.1954
+              <br />
+              à Athènes (Grèce)
+            </a>
+          </button>
+          <ul>
+            <li>
+              <button mat-button (click)="openDialog($event)" class="home-btn">
+                <a href="#" id="laura">
+                  <div class="wrapperimg" id="laura">
+                    <img src="../../../assets/images/Laura.JPG" id="laura" class="img-bigger-adjusted">
+                  </div>
+                  Laura DIEP
+                  <br />
+                  née le 27.04.1979
+                  <br />
+                  à Genève à 11:08
+                </a>
+              </button>
+              <ul>
+                <li>
+                  <button mat-button (click)="openDialog($event)" class="home-btn">
+                    <a href="#" id="linh">
+                      <div class="wrapperimg" id="linh">
+                        <img src="../../../assets/images/linh.PNG" id="linh" class="img-normal">
+                      </div>
+                      Linh
+                      <br />
+                      née le 21.02.2003
+                      <br />
+                      à Genève
+                    </a>
+                  </button>
+                </li>
+                <li>
+                  <button mat-button (click)="openDialog($event)" class="home-btn">
+                    <a href="#" id="nam">
+                      <div class="wrapperimg" id="nam">
+                        <img src="../../../assets/images/nam.JPG" id="nam" class="img-normal">
+                      </div>
+                      Nam
+                      <br />
+                      né le 21.06.2004
+                      <br />
+                      à Genève
+                    </a>
+                  </button>
+                </li>
+                <li>
+                  <button mat-button (click)="openDialog($event)" class="home-btn">
+                    <a href="#" id="loan">
+                      <div class="wrapperimg" id="loan">
+                        <img src="../../../assets/images/loan.JPG" id="loan" class="img-normal">
+                      </div>
+                      Loan
+                      <br />
+                      née le 13.05.2006
+                      <br />
+                      à Genève
+                    </a>
+                  </button>
+                </li>
+                <li>
+                  <button mat-button (click)="openDialog($event)" class="home-btn">
+                    <a href="#" id="tao">
+                      <div class="wrapperimg" id="tao">
+                        <img src="../../../assets/images/tao.PNG" id="tao" class="img-normal">
+                      </div>
+                      Tao
+                      <br />
+                      né le 11.06.2010
+                      <br />
+                      à Gland
+                    </a>
+                  </button>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <button mat-button (click)="openDialog($event)" class="home-btn">
+                <a href="#" id="eric">
+                  <div class="wrapperimg" id="eric">
+                    <img src="../../../assets/images/eric2.jpg" id="eric" class="img-normal">
+                  </div>
+                  Eric DIEP
+                  <br />
+                  né le 29.12.1982
+                  <br />
+                  à Genève à 13:50
+                </a>
+              </button>
+            </li>
+            <li>
+              <button mat-button (click)="openDialog($event)" class="home-btn">
+                <a href="#" id="edouard">
+                  <div class="wrapperimg" id="edouard">
+                    <img src="../../../assets/images/edouard2.jpg" id="edouard" class="img-slightly-bigger">
+                  </div>
+                  Edouard DIEP
+                  <br />
+                  né le 28.04.1994
+                  <br />
+                  à Genève à 15:49
+                </a>
+              </button>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <button mat-button (click)="openDialog($event)" class="home-btn">
+        <a href="#">
+          <div class="wrapperimg">
+            <img src="../../../assets/images/papou.jpeg" class="img-bigger">
+          </div>
+          Achille TZIRAS
+          <br />
+          né le 11.08.1921
+          <br />
+          à Smyrne - Izmir (Turquie)
+          <br />
+          décédé le 15.09.2009
+          <br />
+          à Athènes (Grèce)
+        </a>
+      </button>
+    </li>
+  </ul>
+</div>
