@@ -10,63 +10,63 @@ import { MatDialog } from '@angular/material/dialog';
 export class HomeComponent implements OnInit {
 
   mainSong = new Howl({
-    src: ['assets/sounds/dance_me_to_the_end_of_love.mp3'], html5: true
+    src: ['assets/sounds/dance_me_to_the_end_of_love.mp3'], html5: true, loop: true
   });
 
   mamanSong = new Howl({
-    src: ['assets/sounds/non_je_ne_regrette_rien.mp3'], html5: true
+    src: ['assets/sounds/non_je_ne_regrette_rien.mp3'], html5: true, loop: true
   });
 
   ericSong = new Howl({
-    src: ['assets/sounds/asimbonanga.mp3'], html5: true
+    src: ['assets/sounds/asimbonanga.mp3'], html5: true, loop: true
   });
 
   edouardSong = new Howl({
-    src: ['assets/sounds/kokiri_forest.mp3'], html5: true
+    src: ['assets/sounds/kokiri_forest.mp3'], html5: true, loop: true
   });
 
   mamanLySong = new Howl({
-    src: ['assets/sounds/vietnamese_music1.mp3'], html5: true
+    src: ['assets/sounds/vietnamese_music1.mp3'], html5: true, loop: true
   });
 
   papaAnSong = new Howl({
-    src: ['assets/sounds/petit_papa_noel.mp3'], html5: true
+    src: ['assets/sounds/petit_papa_noel.mp3'], html5: true, loop: true
   });
 
   binhSong = new Howl({
-    src: ['assets/sounds/daddy_cool.mp3'], html5: true
+    src: ['assets/sounds/daddy_cool.mp3'], html5: true, loop: true
   });
 
   kimSong = new Howl({
-    src: ['assets/sounds/vietnamese_music2.mp3'], html5: true
+    src: ['assets/sounds/vietnamese_music2.mp3'], html5: true, loop: true
   });
 
   lauraSong = new Howl({
-    src: ['assets/sounds/rendez_vous_dans_10_ans.mp3'], html5: true
+    src: ['assets/sounds/rendez_vous_dans_10_ans.mp3'], html5: true, loop: true
   });
 
   yayaSong = new Howl({
-    src: ['assets/sounds/cheval_de_bois_adult.mp3'], html5: true
+    src: ['assets/sounds/cheval_de_bois_adult.mp3'], html5: true, loop: true
   });
 
   papouSong = new Howl({
-    src: ['assets/sounds/to_gelakaki.mp3'], html5: true
+    src: ['assets/sounds/to_gelakaki.mp3'], html5: true, loop: true
   });
 
   linhSong = new Howl({
-    src: ['assets/sounds/cheval_de_bois_kid.mp3'], html5: true
+    src: ['assets/sounds/princesse_sarah.mp3'], html5: true, loop: true
   });
 
   namSong = new Howl({
-    src: ['assets/sounds/benten.mp3'], html5: true
+    src: ['assets/sounds/mysterieuses_cites_dor.mp3'], html5: true, loop: true
   });
 
   loanSong = new Howl({
-    src: ['assets/sounds/asimbonanga.mp3'], html5: true
+    src: ['assets/sounds/dragon_ball_z.mp3'], html5: true, loop: true
   });
 
   taoSong = new Howl({
-    src: ['assets/sounds/kung_fu_fighting.mp3'], html5: true
+    src: ['assets/sounds/kung_fu_fighting.mp3'], html5: true, loop: true
   });
 
   constructor(public dialog: MatDialog) { }
@@ -79,10 +79,11 @@ export class HomeComponent implements OnInit {
     }, 500);
     setTimeout(() => {
       document.getElementById("tree").className = "tree";
-    }, 1500);
+    }, 100);
 
     // Play maman's song.
     this.mainSong.play();
+    this.mainSong.seek(.4);
 
     // Change global volume.
     Howler.volume(0.5);
@@ -100,6 +101,7 @@ export class HomeComponent implements OnInit {
         });
         this.mainSong.mute(true);
         this.ericSong.play();
+        this.ericSong.seek(1);
         dialogRef.afterClosed().subscribe(() => {
           this.ericSong.stop();
           this.mainSong.mute(false);
@@ -112,6 +114,7 @@ export class HomeComponent implements OnInit {
         });
         this.mainSong.mute(true);
         this.edouardSong.play();
+        this.edouardSong.seek(.8);
         dialogRef.afterClosed().subscribe(() => {
           this.edouardSong.stop();
           this.mainSong.mute(false);
@@ -124,6 +127,7 @@ export class HomeComponent implements OnInit {
         });
         this.mainSong.mute(true);
         this.lauraSong.play();
+        this.lauraSong.seek(.4);
         dialogRef.afterClosed().subscribe(() => {
           this.lauraSong.stop();
           this.mainSong.mute(false);
@@ -136,18 +140,21 @@ export class HomeComponent implements OnInit {
         });
         this.mainSong.mute(true);
         this.binhSong.play();
+        this.binhSong.seek(15);
+        this.binhSong.fade(0, 1, 500);
         dialogRef.afterClosed().subscribe(() => {
           this.binhSong.stop();
           this.mainSong.mute(false);
         });
         break;
-      case "maman":
+      case "tina":
         dialogRef = this.dialog.open(HomeDialogMaman, {
           width: '40%',
           panelClass: 'custom-modalbox'
         });
         this.mainSong.mute(true);
         this.mamanSong.play();
+        this.mamanSong.seek(.5);
         dialogRef.afterClosed().subscribe(() => {
           this.mamanSong.stop();
           this.mainSong.mute(false);
@@ -160,6 +167,8 @@ export class HomeComponent implements OnInit {
         });
         this.mainSong.mute(true);
         this.yayaSong.play();
+        this.yayaSong.seek(8);
+        this.yayaSong.fade(0, 1, 1000);
         dialogRef.afterClosed().subscribe(() => {
           this.yayaSong.stop();
           this.mainSong.mute(false);
@@ -195,9 +204,11 @@ export class HomeComponent implements OnInit {
           panelClass: 'custom-modalbox'
         });
         this.mainSong.mute(true);
-        this.edouardSong.play();
+        this.linhSong.play();
+        this.linhSong.seek(10);
+        this.linhSong.fade(0, 1, 1500);
         dialogRef.afterClosed().subscribe(() => {
-          this.edouardSong.stop();
+          this.linhSong.stop();
           this.mainSong.mute(false);
         });
         break;
@@ -207,9 +218,10 @@ export class HomeComponent implements OnInit {
           panelClass: 'custom-modalbox'
         });
         this.mainSong.mute(true);
-        this.edouardSong.play();
+        this.namSong.play();
+        this.namSong.seek(48);
         dialogRef.afterClosed().subscribe(() => {
-          this.edouardSong.stop();
+          this.namSong.stop();
           this.mainSong.mute(false);
         });
         break;
@@ -219,19 +231,21 @@ export class HomeComponent implements OnInit {
           panelClass: 'custom-modalbox'
         });
         this.mainSong.mute(true);
-        this.edouardSong.play();
+        this.loanSong.play();
+        this.loanSong.fade(0, 1, 1500);
         dialogRef.afterClosed().subscribe(() => {
-          this.edouardSong.stop();
+          this.loanSong.stop();
           this.mainSong.mute(false);
         });
         break;
       case "tao":
         dialogRef = this.dialog.open(HomeDialogTao, {
           width: '40%',
-          panelClass: 'custom-modalbox'
+          panelClass: 'custom-modalbox',
         });
         this.mainSong.mute(true);
         this.taoSong.play();
+        this.taoSong.seek(12.5);
         dialogRef.afterClosed().subscribe(() => {
           this.taoSong.stop();
           this.mainSong.mute(false);
@@ -244,6 +258,8 @@ export class HomeComponent implements OnInit {
         });
         this.mainSong.mute(true);
         this.mamanLySong.play();
+        this.mamanLySong.seek(2);
+        this.mamanLySong.fade(0, 1, 500);
         dialogRef.afterClosed().subscribe(() => {
           this.mamanLySong.stop();
           this.mainSong.mute(false);
@@ -256,6 +272,8 @@ export class HomeComponent implements OnInit {
         });
         this.mainSong.mute(true);
         this.papaAnSong.play();
+        this.papaAnSong.seek(25);
+        this.papaAnSong.fade(0, 1, 1000);
         dialogRef.afterClosed().subscribe(() => {
           this.papaAnSong.stop();
           this.mainSong.mute(false);
@@ -301,7 +319,8 @@ export class HomeDialogMaman { }
   templateUrl: 'home-dialog-binh.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeDialogBinh { }
+export class HomeDialogBinh {
+}
 
 @Component({
   selector: 'home-dialog-linh',

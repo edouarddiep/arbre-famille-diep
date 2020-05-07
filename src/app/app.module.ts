@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { MatVideoModule } from 'mat-video';
 
 @NgModule({
   declarations: [
@@ -16,6 +16,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     BrowserModule,
     BrowserAnimationsModule,
     MatDialogModule,
+    MatVideoModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
