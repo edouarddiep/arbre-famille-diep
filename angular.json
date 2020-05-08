@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "arbre-genealogique": {
+    "arbre-famille-diep": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/arbre-genealogique",
+            "outputPath": "dist/arbre-famille-diep",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -58,18 +58,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "arbre-genealogique:build"
+            "browserTarget": "arbre-famille-diep:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "arbre-genealogique:build:production"
+              "browserTarget": "arbre-famille-diep:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "arbre-genealogique:build"
+            "browserTarget": "arbre-famille-diep:build"
           }
         },
         "test": {
@@ -107,18 +107,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "arbre-genealogique:serve"
+            "devServerTarget": "arbre-famille-diep:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "arbre-genealogique:serve:production"
+              "devServerTarget": "arbre-famille-diep:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "arbre-genealogique",
+  "defaultProject": "arbre-famille-diep",
   "cli": {
     "analytics": "4ad0bc33-97d6-4fe4-aa0b-3a60365663fa"
   }
