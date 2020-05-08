@@ -128,7 +128,7 @@ export class HomeComponent implements OnInit {
       case "laura":
         dialogRef = this.dialog.open(HomeDialogLaura, {
           width: '40%',
-          height: '85%',
+          height: '90%',
           panelClass: 'custom-modalbox'
         });
         this.mainSong.mute(true);

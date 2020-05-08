@@ -37,6 +37,10 @@ body {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
+.mat-dialog-container{
+    overflow: hidden !important;
+}
+
 
 .icon-close {
     float: right;
@@ -65,9 +69,9 @@ body {
     animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
 }
 
-/* The typing effect */
+/* The developping effect */
 
-@keyframes typing {
+@keyframes extendingHeight {
     from {
         max-height: 0
     }
@@ -89,7 +93,8 @@ body {
 
 .custom-modalbox{
     transition: all 2s ease;
-    animation: opacityShow 1s steps(200, end), typing 1s linear;
+    overflow: hidden;
+    animation: opacityShow 1s steps(200, end), extendingHeight 1s linear;
 }
 
 
