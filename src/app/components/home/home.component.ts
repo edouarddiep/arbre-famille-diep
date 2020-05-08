@@ -76,7 +76,7 @@ export class HomeComponent implements OnInit {
     // Set starter animations.
     setTimeout(() => {
       document.getElementById("homeTitle").className = "home-title-show";
-    }, 500);
+    }, 2000);
     setTimeout(() => {
       document.getElementById("tree").className = "tree";
     }, 100);
@@ -97,6 +97,7 @@ export class HomeComponent implements OnInit {
       case "eric":
         dialogRef = this.dialog.open(HomeDialogEric, {
           width: '40%',
+          height: '75%',
           panelClass: 'custom-modalbox'
         });
         this.mainSong.mute(true);
@@ -110,11 +111,15 @@ export class HomeComponent implements OnInit {
       case "edouard":
         dialogRef = this.dialog.open(HomeDialogEdouard, {
           width: '40%',
+          height: '80%',
           panelClass: 'custom-modalbox'
         });
         this.mainSong.mute(true);
         this.edouardSong.play();
         this.edouardSong.seek(.8);
+        dialogRef.afterOpened().subscribe(() => {
+          console.log(dialogRef._containerInstance._config.panelClass = 'custom-modalbox-show');
+        });
         dialogRef.afterClosed().subscribe(() => {
           this.edouardSong.stop();
           this.mainSong.mute(false);
@@ -123,6 +128,7 @@ export class HomeComponent implements OnInit {
       case "laura":
         dialogRef = this.dialog.open(HomeDialogLaura, {
           width: '40%',
+          height: '85%',
           panelClass: 'custom-modalbox'
         });
         this.mainSong.mute(true);
@@ -136,6 +142,7 @@ export class HomeComponent implements OnInit {
       case "binh":
         dialogRef = this.dialog.open(HomeDialogBinh, {
           width: '40%',
+          height: '100%',
           panelClass: 'custom-modalbox'
         });
         this.mainSong.mute(true);
@@ -150,6 +157,7 @@ export class HomeComponent implements OnInit {
       case "tina":
         dialogRef = this.dialog.open(HomeDialogMaman, {
           width: '40%',
+          height: '100%',
           panelClass: 'custom-modalbox'
         });
         this.mainSong.mute(true);
@@ -163,6 +171,7 @@ export class HomeComponent implements OnInit {
       case "yaya":
         dialogRef = this.dialog.open(HomeDialogYaya, {
           width: '40%',
+          height: '95%',
           panelClass: 'custom-modalbox'
         });
         this.mainSong.mute(true);
@@ -177,6 +186,7 @@ export class HomeComponent implements OnInit {
       case "papou":
         dialogRef = this.dialog.open(HomeDialogPapou, {
           width: '40%',
+          height: '85%',
           panelClass: 'custom-modalbox'
         });
         this.mainSong.mute(true);
@@ -254,6 +264,7 @@ export class HomeComponent implements OnInit {
       case "mamanLy":
         dialogRef = this.dialog.open(HomeDialogMamanLy, {
           width: '40%',
+          height: '85%',
           panelClass: 'custom-modalbox'
         });
         this.mainSong.mute(true);
@@ -268,6 +279,7 @@ export class HomeComponent implements OnInit {
       case "papaAn":
         dialogRef = this.dialog.open(HomeDialogPapaAn, {
           width: '40%',
+          height: '90%',
           panelClass: 'custom-modalbox'
         });
         this.mainSong.mute(true);

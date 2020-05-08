@@ -37,32 +37,6 @@ body {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-.grid-one-column {
-    display: grid;
-    padding: 20px;
-    margin-bottom: 20px;
-    grid-template-columns: 1fr;
-    justify-items: center;
-    border-bottom: 1px solid black;
-}
-
-.grid-two-columns {
-    display: grid;
-    padding: 20px;
-    margin-bottom: 20px;
-    grid-template-columns: 1fr 1fr;
-    justify-items: center;
-    border-bottom: 1px solid black;
-}
-
-.grid-three-columns {
-    display: grid;
-    padding: 20px;
-    margin-bottom: 20px;
-    grid-template-columns: 1fr 1fr 1fr;
-    justify-items: center;
-    border-bottom: 1px solid black;
-}
 
 .icon-close {
     float: right;
@@ -95,10 +69,10 @@ body {
 
 @keyframes typing {
     from {
-        width: 0
+        max-height: 0
     }
     to {
-        width: 100%
+        max-height: auto
     }
 }
 
@@ -110,5 +84,20 @@ body {
     }
     50% {
         border-color: transparent;
+    }
+}
+
+.custom-modalbox{
+    transition: all 2s ease;
+    animation: opacityShow 1s steps(200, end), typing 1s linear;
+}
+
+
+@keyframes opacityShow {
+    from {
+        opacity: 0
+    }
+    to {
+        opacity: 1
     }
 }
