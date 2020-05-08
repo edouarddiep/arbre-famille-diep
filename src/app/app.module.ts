@@ -21,4 +21,4 @@ import { MatVideoModule } from 'mat-video';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
