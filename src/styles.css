@@ -30,22 +30,19 @@ body {
 }
 
 .mat-typography {
-    font-size: .95em;
+    font-size: 1.1em;
     margin-top: 20px;
+    line-height: 1.6;
     letter-spacing: .5px;
     font-style: italic;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-.mat-dialog-container{
-    overflow: hidden !important;
-}
-
-
 .icon-close {
     float: right;
     margin: -15px;
-    color: mediumvioletred;
+    font-size: xx-large;
+    color: crimson;
 }
 
 
@@ -105,4 +102,10 @@ body {
     to {
         opacity: 1
     }
+}
+
+.person-title{
+    text-align: center;
+    font-size: 1.3em !important;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
