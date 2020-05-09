@@ -167,4 +167,29 @@ body {
         max-width: 90% !important;
         width: 90% !important;
     }
+
+    .grid-three-columns-border {
+        grid-template-columns: 1fr;
+    }
+    
+    .grid-two-columns-border {
+        grid-template-columns: 1fr;
+    }
+    
+    .grid-one-column-border {
+        grid-template-columns: 1fr;
+    }
+    
+    .grid-three-columns-simple {
+        grid-template-columns: 1fr;
+    }
+    
+    .grid-two-columns-simple {
+        grid-template-columns: 1fr;
+    }
+    
+    .grid-one-column-simple {
+        grid-template-columns: 1fr;
+    }
+    
 }
