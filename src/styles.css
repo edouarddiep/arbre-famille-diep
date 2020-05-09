@@ -29,6 +29,57 @@ body {
     cursor: url(../src/assets/images/heart2.cur) 99 0, auto;
 }
 
+.grid-three-columns-border {
+    display: grid;
+    padding: 20px;
+    margin-bottom: 20px;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    border-bottom: 1px solid black;
+}
+
+.grid-two-columns-border {
+    display: grid;
+    padding: 20px;
+    margin-bottom: 20px;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    border-bottom: 1px solid black;
+}
+
+.grid-one-column-border {
+    display: grid;
+    padding: 20px;
+    margin-bottom: 20px;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    border-bottom: 1px solid black;
+}
+
+.grid-three-columns-simple {
+    display: grid;
+    padding: 20px;
+    margin-bottom: 20px;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+}
+
+.grid-two-columns-simple {
+    display: grid;
+    padding: 20px;
+    margin-bottom: 20px;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+}
+
+.grid-one-column-simple {
+    display: grid;
+    padding: 20px;
+    margin-bottom: 20px;
+    grid-template-columns: 1fr;
+    justify-items: center;
+}
+
 .mat-typography {
     font-size: 1.1em;
     margin-top: 20px;
@@ -44,7 +95,6 @@ body {
     font-size: xx-large;
     color: crimson;
 }
-
 
 .typewriter {
     width: 100%;
@@ -88,12 +138,11 @@ body {
     }
 }
 
-.custom-modalbox{
+.custom-modalbox {
     transition: all 2s ease;
     overflow: hidden;
     animation: opacityShow 1s steps(200, end), extendingHeight 1s linear;
 }
-
 
 @keyframes opacityShow {
     from {
@@ -104,8 +153,18 @@ body {
     }
 }
 
-.person-title{
+.person-title {
     text-align: center;
     font-size: 1.3em !important;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        overflow: scroll;
+    }
+    .custom-modalbox {
+        max-width: 90% !important;
+        width: 90% !important;
+    }
 }

@@ -27,7 +27,8 @@
        top: 0;
        margin-left: auto;
        margin-right: auto;
-       width: 75%;
+       width: 100%;
+       min-width: 1500px;
        transition: all 2s ease;
    }
 
@@ -140,6 +141,12 @@
        opacity: .9;
        -webkit-animation-delay: 3.5s;
        -webkit-animation-timing-function: ease-in;
+   }
+
+   @media screen and (max-width: 768px){
+       .snowflakes{
+           top: -120px;
+       }
    }
 
    /*TREE CSS */
