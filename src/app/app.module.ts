@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, OnInit } from '@angular/core';
+import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DropdownModule } from 'angular-bootstrap-md';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatVideoModule } from 'mat-video';
 
@@ -17,6 +18,7 @@ import { MatVideoModule } from 'mat-video';
     BrowserAnimationsModule,
     MatDialogModule,
     MatVideoModule,
+    DropdownModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

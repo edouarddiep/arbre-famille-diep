@@ -143,8 +143,8 @@
        -webkit-animation-timing-function: ease-in;
    }
 
-   @media screen and (max-width: 768px){
-       .snowflakes{
+   @media screen and (max-width: 768px) {
+       .snowflakes {
            top: -120px;
        }
    }
@@ -152,41 +152,41 @@
    /*TREE CSS */
 
    .tree-hidden {
-    position: absolute; 
-    left: 0; 
-    right: 0; 
-    left: 50%;
-    top: 0;
-    width: 90%;
-    font-size: 2em;
-    display: flex;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
-    opacity: 0;
-    transform: translate(-50%,-50%);
-    transition: all 4s ease-in-out;
-    z-index: 99;
+       position: absolute;
+       left: 0;
+       right: 0;
+       left: 50%;
+       top: 0;
+       width: 90%;
+       font-size: 2em;
+       display: flex;
+       align-items: center;
+       align-content: center;
+       justify-content: center;
+       opacity: 0;
+       transform: translate(-50%, -50%);
+       transition: all 4s ease-in-out;
+       z-index: 99;
    }
 
    .tree {
-    position: absolute; 
-    left: 0; 
-    right: 0; 
-    left: 50%;
-    top: 55%;
-    width: 90%;
-    min-width: 2000px;
-    max-width: 100%;
-    font-size: 2em;
-    display: flex;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
-    opacity: 1;
-    transform: translate(-50%,-50%);
-    transition: all 4s ease-in-out;
-    z-index: 99;
+       position: absolute;
+       left: 0;
+       right: 0;
+       left: 50%;
+       top: 55%;
+       width: 90%;
+       min-width: 2000px;
+       max-width: 100%;
+       font-size: 2em;
+       display: flex;
+       align-items: center;
+       align-content: center;
+       justify-content: center;
+       opacity: 1;
+       transform: translate(-50%, -50%);
+       transition: all 4s ease-in-out;
+       z-index: 99;
    }
 
    .tree ul {
@@ -215,8 +215,8 @@
        right: 50%;
        border-top: 2px solid #ccc;
        width: 50%;
-       height: 20px;       z-index: -1;
-
+       height: 20px;
+       z-index: -1;
    }
 
    .tree li::after {
@@ -275,11 +275,11 @@ right connector from last child*/
 
    .tree li a {
        border: 2px solid #ccc;
-       padding: 5px 10px;
+       padding: 10px 10px;
        text-decoration: none;
-       color: whitesmoke;       
+       color: whitesmoke;
        font-family: arial, verdana, tahoma;
-       font-size: 12px;
+       font-size: 15px;
        display: inline-block;
        border-radius: 5px;
        -webkit-border-radius: 5px;
@@ -300,72 +300,57 @@ right connector from last child*/
    */
 
    .tree li a:hover {
-    background: #c8e4f8;
-    color: #000;
-    border: 2px solid orange;
-    transform:scale(1.1);
-    z-index: 999;
-}
+       background: #c8e4f8;
+       color: #000;
+       text-shadow: none;
+       border: 2px solid orange;
+       transform: scale(1.1);
+       z-index: 999;
+   }
 
    /* IMG CSS */
 
    div.wrapperimg {
-    display: block;
-    width: 100px;
-    height: 100px;
-    margin:auto;
-    background: transparent;
-    text-align: center;
-    align-content: center;
-    align-items: center;
-    overflow: hidden;
-    border-radius: 50%;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-}
-.img-normal {
-   max-height: 100%;
-   max-width: 100%;
-}
+       display: block;
+       width: 130px;
+       height: 130px;
+       margin: auto;
+       background: transparent;
+       text-align: center;
+       align-content: center;
+       align-items: center;
+       overflow: hidden;
+       border-radius: 50%;
+       -moz-border-radius: 50%;
+       -webkit-border-radius: 50%;
+   }
 
-.img-slightly-bigger{
-    max-height: 115%;
-    max-width: 100%;  
-}
 
-.img-bigger{
-    max-height: 125%;
-    max-width: 100%;  
-}
+   .home-btn {
+       background: transparent;
+       border: none;
+       padding: 0 !important;
+   }
 
-.img-bigger-adjusted{
-    max-height: 125%;
-    max-width: 100%;
-    position: relative;
-    bottom: 10px;
-}
+   .custom-dialog-container .mat-dialog-container {
+       display: block;
+       padding: 24px;
+       border-radius: 4px;
+       box-sizing: border-box;
+       overflow: auto;
+       outline: 0;
+       margin: auto !important;
+       width: 50% !important;
+       height: 100%;
+       background-color: #000;
+       min-height: inherit;
+       max-height: inherit;
+   }
 
-.home-btn{
-    background:transparent;
-    border:none;
-    padding: 0 !important;
-}
+   a {
+       cursor: url(../../../assets/images/heart2.cur), auto;
+   }
 
-.custom-dialog-container .mat-dialog-container{
-    display: block;
-    padding: 24px;
-    border-radius: 4px;
-    box-sizing: border-box;
-    overflow: auto;
-    outline: 0;
-    margin:auto !important;
-    width: 50% !important;
-    height: 100%;
-    background-color: #000;
-    min-height: inherit;
-    max-height: inherit;
-}
-
-a{
-    cursor: url(../../../assets/images/heart2.cur), auto;
-}
+   .grass-font-link {
+       text-shadow: 1px 0 0 dimgray, -1px 0 0 dimgray, 0 1px 0 dimgray, 0 -1px 0 dimgray, 1px 1px dimgray, -1px -1px 0 dimgray, 1px -1px 0 dimgray, -1px 1px 0 dimgray;
+   }
