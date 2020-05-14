@@ -371,7 +371,7 @@ right connector from last child*/
        position: absolute;
        color: whitesmoke;
        top: 380px;
-       left: 517px; /* left: 560px */
+       left: 596px; /* left: 560px */
        min-width: 583px;
        max-width: 583px;
        z-index: -1;
