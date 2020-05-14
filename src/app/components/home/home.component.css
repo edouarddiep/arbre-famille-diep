@@ -190,6 +190,7 @@
    }
 
    .tree ul {
+       height: 90vh;
        padding-top: 20px;
        position: relative;
        transition: all 0.5s;
@@ -273,6 +274,17 @@ right connector from last child*/
        z-index: -1;
    }
 
+   .tree ul ul::before, .tree ul ul::after {
+       content: '';
+       position: absolute;
+       top: 0;
+       left: 50%;
+       border-left: 2px solid #ccc;
+       width: 0;
+       height: 20px;
+       z-index: -1;
+   }
+
    .tree li a {
        border: 2px solid #ccc;
        padding: 10px 10px;
@@ -325,7 +337,6 @@ right connector from last child*/
        -webkit-border-radius: 50%;
    }
 
-
    .home-btn {
        background: transparent;
        border: none;
@@ -352,5 +363,28 @@ right connector from last child*/
    }
 
    .grass-font-link {
-       text-shadow: 1px 0 0 dimgray, -1px 0 0 dimgray, 0 1px 0 dimgray, 0 -1px 0 dimgray, 1px 1px dimgray, -1px -1px 0 dimgray, 1px -1px 0 dimgray, -1px 1px 0 dimgray;
+       color: 	navy !important;
+       font-weight: 600;
+   }
+
+   .family-line {
+       position: absolute;
+       color: whitesmoke;
+       top: 380px;
+       left: 517px; /* left: 560px */
+       min-width: 583px;
+       max-width: 583px;
+       z-index: -1;
+   }
+
+   @media screen and (min-width: 2300px){
+    .family-line {
+        position: absolute;
+        color: whitesmoke;
+        top: 380px;
+        left: 560px; /* left: 517px */
+        min-width: 583px;
+        max-width: 583px;
+        z-index: -1;
+    }
    }

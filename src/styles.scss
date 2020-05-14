@@ -24,7 +24,7 @@ html, body {
 }
 
 body {
-    overflow: hidden;
+    overflow-y: hidden;
     height: 100vh;
     cursor: url(../src/assets/images/heart2.cur) 99 0, auto;
 }
@@ -214,4 +214,83 @@ body {
     max-width: 100%;
     position: relative;
     bottom: 10px;
+}
+
+.horizontal-video-container{
+    width: 335px;
+    overflow:hidden;
+    display:inline-flex;
+    justify-content: center;
+    height: auto;
+    border-radius: 8px;
+}
+
+.narrow-video-container{
+    width: 325px;
+    overflow: hidden;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 243px;
+    border-radius: 8px;
+}
+
+
+.horizontal-and-vertical-video-container{
+    width: 450px;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 250px;
+    border-radius: 8px;
+}
+
+.vertical-video-container{
+    width: 168px;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    border-radius: 8px;
+}
+.vertical-video-large-container{
+    width: 200px;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    border-radius: 8px;
+}
+
+.wrapper-modal-img{
+    height: 200px;
+    width: auto;
+    display: block;
+    margin: auto;
+    background: transparent;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+}
+
+.wrapper-modal-img-bigger{
+    height: 250px;
+    width: auto;
+    display: block;
+    margin: auto;
+    background: transparent;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
 }
