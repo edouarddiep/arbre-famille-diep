@@ -292,6 +292,7 @@ right connector from last child*/
        color: whitesmoke;
        font-family: arial, verdana, tahoma;
        font-size: 15px;
+       font-weight: 600;
        display: inline-block;
        border-radius: 5px;
        -webkit-border-radius: 5px;
