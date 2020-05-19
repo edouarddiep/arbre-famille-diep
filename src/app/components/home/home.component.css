@@ -352,7 +352,7 @@ right connector from last child*/
        outline: 0;
        margin: auto !important;
        width: 50% !important;
-       height: 100%;
+       height: auto;
        background-color: #000;
        min-height: inherit;
        max-height: inherit;
@@ -363,28 +363,18 @@ right connector from last child*/
    }
 
    .grass-font-link {
-       color: 	navy !important;
+       color: navy !important;
        font-weight: 600;
    }
 
-   .family-line {
-       position: absolute;
-       color: whitesmoke;
-       top: 380px;
-       left: 596px; /* left: 560px */
-       min-width: 583px;
-       max-width: 583px;
-       z-index: -1;
-   }
-
-   @media screen and (min-width: 2300px){
-    .family-line {
-        position: absolute;
-        color: whitesmoke;
-        top: 380px;
-        left: 560px; /* left: 517px */
-        min-width: 583px;
-        max-width: 583px;
-        z-index: -1;
-    }
+   @media screen and (min-width: 2300px) {
+       .family-line {
+           position: absolute;
+           color: whitesmoke;
+           top: 430px;
+           left: 34vh;
+           min-width: 100vh;
+           max-width: 100vh;
+           z-index: -1;
+       }
    }
