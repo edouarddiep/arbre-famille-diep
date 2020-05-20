@@ -291,10 +291,10 @@ export class HomeComponent implements OnInit {
 })
 export class HomeDialogEric extends HomeComponent implements OnInit {
   /* L'âge s'actualise chaque année */
-  age: number
+  age: number;
 
   ngOnInit(): void {
-    this.age = super.getAge('12.29.1982'); // 29 décembre 1982
+    this.age = this.getAge('12.29.1982'); // 29 décembre 1982
   }
 }
 
@@ -305,10 +305,10 @@ export class HomeDialogEric extends HomeComponent implements OnInit {
 })
 export class HomeDialogEdouard extends HomeComponent implements OnInit {
   /* L'âge s'actualise chaque année */
-  age: number
+  age: number;
 
   ngOnInit(): void {
-    this.age = super.getAge('04.28.1994'); // 28 avril 1994
+    this.age = this.getAge('04.28.1994'); // 28 avril 1994
   }
 }
 
@@ -319,10 +319,10 @@ export class HomeDialogEdouard extends HomeComponent implements OnInit {
 })
 export class HomeDialogLaura extends HomeComponent implements OnInit {
   /* L'âge s'actualise chaque année */
-  age: number
+  age: number;
 
   ngOnInit(): void {
-    this.age = super.getAge('04.27.1979'); // 27 avril 1979
+    this.age = this.getAge('04.27.1979'); // 27 avril 1979
   }
 }
 
@@ -333,10 +333,10 @@ export class HomeDialogLaura extends HomeComponent implements OnInit {
 })
 export class HomeDialogMaman extends HomeComponent implements OnInit {
   /* L'âge s'actualise chaque année */
-  age: number
+  age: number;
 
   ngOnInit(): void {
-    this.age = super.getAge('07.24.1954'); // 24 juillet 1954
+    this.age = this.getAge('07.24.1954'); // 24 juillet 1954
   }
 }
 
@@ -349,10 +349,11 @@ export class HomeDialogBinh extends HomeComponent implements OnInit {
 
   /* L'âge s'actualise chaque année */
   kimAge: number;
-  age: number
+  age: number;
 
   ngOnInit(): void {
-    this.age = super.getAge('07.13.1953'); // 13 juillet 1953
+    this.kimAge = this.getAge('12.04.2003'); // 4 décembre 2003
+    this.age = this.getAge('07.13.1953'); // 13 juillet 1953
   }
 }
 
@@ -363,10 +364,10 @@ export class HomeDialogBinh extends HomeComponent implements OnInit {
 })
 export class HomeDialogLinh extends HomeComponent implements OnInit {
   /* L'âge s'actualise chaque année */
-  age: number
+  age: number;
 
   ngOnInit(): void {
-    this.age = super.getAge('02.21.2003'); // 21 février 2003
+    this.age = this.getAge('02.21.2003'); // 21 février 2003
   }
 }
 
@@ -377,10 +378,10 @@ export class HomeDialogLinh extends HomeComponent implements OnInit {
 })
 export class HomeDialogNam extends HomeComponent implements OnInit {
   /* L'âge s'actualise chaque année */
-  age: number
+  age: number;
 
   ngOnInit(): void {
-    this.age = super.getAge('06.21.2004'); // 21 juin 2004
+    this.age = this.getAge('06.21.2004'); // 21 juin 2004
   }
 }
 
@@ -390,12 +391,12 @@ export class HomeDialogNam extends HomeComponent implements OnInit {
   styleUrls: ['./home.component.css']
 })
 export class HomeDialogLoan extends HomeComponent implements OnInit {
-    /* L'âge s'actualise chaque année */
-    age: number
-  
-    ngOnInit(): void {
-      this.age = super.getAge('05.13.2006'); // 13 mai 2006
-    }
+  /* L'âge s'actualise chaque année */
+  age: number;
+
+  ngOnInit(): void {
+    this.age = this.getAge('05.13.2006'); // 13 mai 2006
+  }
 }
 
 @Component({
@@ -404,12 +405,12 @@ export class HomeDialogLoan extends HomeComponent implements OnInit {
   styleUrls: ['./home.component.css']
 })
 export class HomeDialogTao extends HomeComponent implements OnInit {
-    /* L'âge s'actualise chaque année */
-    age: number
-  
-    ngOnInit(): void {
-      this.age = super.getAge('06.11.2010'); // 11 juin 2010
-    }
+  /* L'âge s'actualise chaque année */
+  age: number;
+
+  ngOnInit(): void {
+    this.age = this.getAge('06.11.2010'); // 11 juin 2010
+  }
 }
 @Component({
   selector: 'home-dialog-papa-an',
@@ -442,9 +443,9 @@ export class HomeDialogPapou { }
 })
 export class HomeDialogKim extends HomeComponent implements OnInit {
   /* L'âge s'actualise chaque année */
-  age: number
+  age: number;
 
   ngOnInit(): void {
-    this.age = super.getAge('12.04.2003'); // 4 décembre 2003
+    this.age = this.getAge('12.04.2003'); // 4 décembre 2003
   }
 }
