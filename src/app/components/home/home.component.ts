@@ -78,6 +78,9 @@ export class HomeComponent implements OnInit {
       document.getElementById("homeTitle").className = "home-title-show";
     }, 2000);
     setTimeout(() => {
+      document.getElementById("homeDate").className = "home-date-show";
+    }, 500);
+    setTimeout(() => {
       document.getElementById("tree").className = "tree";
     }, 100);
 
@@ -86,6 +89,17 @@ export class HomeComponent implements OnInit {
     this.mainSong.play();
     // Change global volume.
     Howler.volume(0.5);
+  }
+
+  getAge(dateString) {
+    const today = new Date();
+    const birthDate = new Date(dateString);
+    const month = today.getMonth() - birthDate.getMonth();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
   }
 
   openDialog(e) {
@@ -275,52 +289,70 @@ export class HomeComponent implements OnInit {
   templateUrl: 'home-dialog-eric.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeDialogEric { }
+export class HomeDialogEric extends HomeComponent implements OnInit {
+  /* L'âge s'actualise chaque année */
+  age: number
+
+  ngOnInit(): void {
+    this.age = super.getAge('12.29.1982'); // 29 décembre 1982
+  }
+}
 
 @Component({
   selector: 'home-dialog-edouard',
   templateUrl: 'home-dialog-edouard.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeDialogEdouard { }
+export class HomeDialogEdouard extends HomeComponent implements OnInit {
+  /* L'âge s'actualise chaque année */
+  age: number
+
+  ngOnInit(): void {
+    this.age = super.getAge('04.28.1994'); // 28 avril 1994
+  }
+}
 
 @Component({
   selector: 'home-dialog-laura',
   templateUrl: 'home-dialog-laura.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeDialogLaura { }
+export class HomeDialogLaura extends HomeComponent implements OnInit {
+  /* L'âge s'actualise chaque année */
+  age: number
+
+  ngOnInit(): void {
+    this.age = super.getAge('04.27.1979'); // 27 avril 1979
+  }
+}
 
 @Component({
   selector: 'home-dialog-maman',
   templateUrl: 'home-dialog-maman.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeDialogMaman { }
+export class HomeDialogMaman extends HomeComponent implements OnInit {
+  /* L'âge s'actualise chaque année */
+  age: number
+
+  ngOnInit(): void {
+    this.age = super.getAge('07.24.1954'); // 24 juillet 1954
+  }
+}
 
 @Component({
   selector: 'home-dialog-binh',
   templateUrl: 'home-dialog-binh.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeDialogBinh implements OnInit {
+export class HomeDialogBinh extends HomeComponent implements OnInit {
 
-  /* L'âge de Kim qui s'actualise chaque année */
+  /* L'âge s'actualise chaque année */
   kimAge: number;
+  age: number
 
   ngOnInit(): void {
-    this.kimAge = this.getAge('12.04.2003'); // 4 décembre 2003
-  }
-
-  getAge(dateString) {
-    const today = new Date();
-    const birthDate = new Date(dateString);
-    const month = today.getMonth() - birthDate.getMonth();
-    let age = today.getFullYear() - birthDate.getFullYear();
-    if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
-    }
-    return age;
+    this.age = super.getAge('07.13.1953'); // 13 juillet 1953
   }
 }
 
@@ -329,28 +361,56 @@ export class HomeDialogBinh implements OnInit {
   templateUrl: 'home-dialog-linh.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeDialogLinh { }
+export class HomeDialogLinh extends HomeComponent implements OnInit {
+  /* L'âge s'actualise chaque année */
+  age: number
+
+  ngOnInit(): void {
+    this.age = super.getAge('02.21.2003'); // 21 février 2003
+  }
+}
 
 @Component({
   selector: 'home-dialog-nam',
   templateUrl: 'home-dialog-nam.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeDialogNam { }
+export class HomeDialogNam extends HomeComponent implements OnInit {
+  /* L'âge s'actualise chaque année */
+  age: number
+
+  ngOnInit(): void {
+    this.age = super.getAge('06.21.2004'); // 21 juin 2004
+  }
+}
 
 @Component({
   selector: 'home-dialog-loan',
   templateUrl: 'home-dialog-loan.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeDialogLoan { }
+export class HomeDialogLoan extends HomeComponent implements OnInit {
+    /* L'âge s'actualise chaque année */
+    age: number
+  
+    ngOnInit(): void {
+      this.age = super.getAge('05.13.2006'); // 13 mai 2006
+    }
+}
 
 @Component({
   selector: 'home-dialog-tao',
   templateUrl: 'home-dialog-tao.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeDialogTao { }
+export class HomeDialogTao extends HomeComponent implements OnInit {
+    /* L'âge s'actualise chaque année */
+    age: number
+  
+    ngOnInit(): void {
+      this.age = super.getAge('06.11.2010'); // 11 juin 2010
+    }
+}
 @Component({
   selector: 'home-dialog-papa-an',
   templateUrl: 'home-dialog-papa-an.html',
@@ -380,4 +440,11 @@ export class HomeDialogPapou { }
   templateUrl: 'home-dialog-kim.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeDialogKim { }
+export class HomeDialogKim extends HomeComponent implements OnInit {
+  /* L'âge s'actualise chaque année */
+  age: number
+
+  ngOnInit(): void {
+    this.age = super.getAge('12.04.2003'); // 4 décembre 2003
+  }
+}

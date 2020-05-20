@@ -387,3 +387,24 @@ right connector from last child*/
            z-index: -1;
        }
    }
+
+   .home-date-hidden {
+       color: white;
+       font-style: italic;
+       position: absolute;
+       top: 8px;
+       right: 200px;
+       opacity: 0;
+       font-size: 20px;
+       transition: all 2s ease;
+   }
+   .home-date-show {
+       color: whitesmoke;
+       font-style: italic;
+       position: absolute;
+       top: 8px;
+       opacity: 1;
+       right: 16px;
+       font-size: 20px;
+       transition: all 2s ease;
+   }
