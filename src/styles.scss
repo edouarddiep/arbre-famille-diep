@@ -27,7 +27,9 @@ body {
 }
 
 body {
-  overflow-y: hidden;
+  overflow: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   height: 100vh;
   cursor: url(../src/assets/images/heart2.cur) 99 0, auto;
 }
@@ -375,4 +377,12 @@ img {
   overflow: scroll !important;
   display: flex !important;
   flex-direction: column !important;
+}
+
+.dialog-age{
+  float: right;
+  position: relative;
+  font-style: italic;
+  left: -25px;
+  top: 15px;
 }

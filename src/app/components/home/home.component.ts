@@ -69,6 +69,17 @@ export class HomeComponent implements OnInit {
     src: ['assets/sounds/tao_tao.mp3'], html5: true, loop: true
   });
 
+  ericAge = this.getAge('12/29/1982'); // 29 décembre 1982
+  edouardAge = this.getAge('04/28/1994'); // 28 avril 1994
+  lauraAge = this.getAge('04/27/1979'); // 27 avril 1979
+  tinaAge = this.getAge('07/24/1954'); // 24 juillet 1954
+  binhAge = this.getAge('07/13/1953'); // 13 juillet 1953
+  linhAge = this.getAge('02/21/2003'); // 21 février 2003
+  namAge = this.getAge('06/21/2004'); // 21 juin 2004
+  loanAge = this.getAge('05/13/2006'); // 13 mai 2006
+  taoAge = this.getAge('06/11/2010'); // 11 juin 2010
+  kimAge = this.getAge('12/04/2003'); // 4 décembre 2003
+
   constructor(public dialog: MatDialog) { }
 
 
@@ -89,6 +100,16 @@ export class HomeComponent implements OnInit {
     this.mainSong.play();
     // Change global volume.
     Howler.volume(0.5);
+    localStorage.setItem('ericAge', this.ericAge.toString());
+    localStorage.setItem('edouardAge', this.edouardAge.toString());
+    localStorage.setItem('lauraAge', this.lauraAge.toString());
+    localStorage.setItem('tinaAge', this.tinaAge.toString());
+    localStorage.setItem('binhAge', this.binhAge.toString());
+    localStorage.setItem('linhAge', this.linhAge.toString());
+    localStorage.setItem('namAge', this.namAge.toString());
+    localStorage.setItem('loanAge', this.loanAge.toString());
+    localStorage.setItem('taoAge', this.taoAge.toString());
+    localStorage.setItem('kimAge', this.kimAge.toString());
   }
 
   getAge(dateString) {
@@ -289,13 +310,9 @@ export class HomeComponent implements OnInit {
   templateUrl: 'home-dialog-eric.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeDialogEric extends HomeComponent implements OnInit {
+export class HomeDialogEric {
   /* L'âge s'actualise chaque année */
-  age: number;
-
-  ngOnInit(): void {
-    this.age = this.getAge('12.29.1982'); // 29 décembre 1982
-  }
+  age = localStorage.getItem('ericAge');
 }
 
 @Component({
@@ -303,13 +320,9 @@ export class HomeDialogEric extends HomeComponent implements OnInit {
   templateUrl: 'home-dialog-edouard.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeDialogEdouard extends HomeComponent implements OnInit {
+export class HomeDialogEdouard {
   /* L'âge s'actualise chaque année */
-  age: number;
-
-  ngOnInit(): void {
-    this.age = this.getAge('04.28.1994'); // 28 avril 1994
-  }
+  age = localStorage.getItem('edouardAge');
 }
 
 @Component({
@@ -317,13 +330,9 @@ export class HomeDialogEdouard extends HomeComponent implements OnInit {
   templateUrl: 'home-dialog-laura.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeDialogLaura extends HomeComponent implements OnInit {
+export class HomeDialogLaura {
   /* L'âge s'actualise chaque année */
-  age: number;
-
-  ngOnInit(): void {
-    this.age = this.getAge('04.27.1979'); // 27 avril 1979
-  }
+  age = localStorage.getItem('lauraAge');
 }
 
 @Component({
@@ -331,13 +340,9 @@ export class HomeDialogLaura extends HomeComponent implements OnInit {
   templateUrl: 'home-dialog-maman.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeDialogMaman extends HomeComponent implements OnInit {
+export class HomeDialogMaman {
   /* L'âge s'actualise chaque année */
-  age: number;
-
-  ngOnInit(): void {
-    this.age = this.getAge('07.24.1954'); // 24 juillet 1954
-  }
+  age = localStorage.getItem('tinaAge');
 }
 
 @Component({
@@ -345,16 +350,10 @@ export class HomeDialogMaman extends HomeComponent implements OnInit {
   templateUrl: 'home-dialog-binh.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeDialogBinh extends HomeComponent implements OnInit {
-
+export class HomeDialogBinh {
   /* L'âge s'actualise chaque année */
-  kimAge: number;
-  age: number;
-
-  ngOnInit(): void {
-    this.kimAge = this.getAge('12.04.2003'); // 4 décembre 2003
-    this.age = this.getAge('07.13.1953'); // 13 juillet 1953
-  }
+  kimAge = localStorage.getItem('kimAge');
+  age = localStorage.getItem('binhAge');
 }
 
 @Component({
@@ -362,13 +361,9 @@ export class HomeDialogBinh extends HomeComponent implements OnInit {
   templateUrl: 'home-dialog-linh.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeDialogLinh extends HomeComponent implements OnInit {
+export class HomeDialogLinh {
   /* L'âge s'actualise chaque année */
-  age: number;
-
-  ngOnInit(): void {
-    this.age = this.getAge('02.21.2003'); // 21 février 2003
-  }
+  age = localStorage.getItem('linhAge');
 }
 
 @Component({
@@ -376,13 +371,9 @@ export class HomeDialogLinh extends HomeComponent implements OnInit {
   templateUrl: 'home-dialog-nam.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeDialogNam extends HomeComponent implements OnInit {
+export class HomeDialogNam {
   /* L'âge s'actualise chaque année */
-  age: number;
-
-  ngOnInit(): void {
-    this.age = this.getAge('06.21.2004'); // 21 juin 2004
-  }
+  age = localStorage.getItem('namAge');
 }
 
 @Component({
@@ -390,13 +381,9 @@ export class HomeDialogNam extends HomeComponent implements OnInit {
   templateUrl: 'home-dialog-loan.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeDialogLoan extends HomeComponent implements OnInit {
+export class HomeDialogLoan {
   /* L'âge s'actualise chaque année */
-  age: number;
-
-  ngOnInit(): void {
-    this.age = this.getAge('05.13.2006'); // 13 mai 2006
-  }
+  age = localStorage.getItem('loanAge');
 }
 
 @Component({
@@ -404,13 +391,9 @@ export class HomeDialogLoan extends HomeComponent implements OnInit {
   templateUrl: 'home-dialog-tao.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeDialogTao extends HomeComponent implements OnInit {
+export class HomeDialogTao {
   /* L'âge s'actualise chaque année */
-  age: number;
-
-  ngOnInit(): void {
-    this.age = this.getAge('06.11.2010'); // 11 juin 2010
-  }
+  age = localStorage.getItem('taoAge');
 }
 @Component({
   selector: 'home-dialog-papa-an',
@@ -441,11 +424,7 @@ export class HomeDialogPapou { }
   templateUrl: 'home-dialog-kim.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeDialogKim extends HomeComponent implements OnInit {
+export class HomeDialogKim {
   /* L'âge s'actualise chaque année */
-  age: number;
-
-  ngOnInit(): void {
-    this.age = this.getAge('12.04.2003'); // 4 décembre 2003
-  }
+  age = localStorage.getItem('kimAge');
 }
