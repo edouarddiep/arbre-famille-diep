@@ -255,6 +255,12 @@ body {
   justify-content: center;
   height: auto;
   border-radius: 8px;
+  transition: transform 0.5s ease;
+}
+
+.horizontal-video-container:hover{
+  transform: scale(1.5);
+  z-index: 1000;
 }
 
 .eric-yoyo {
@@ -266,6 +272,12 @@ body {
   border-radius: 8px;
   position: relative;
   left: -6px;
+  transition: transform 0.5s ease;
+}
+
+.eric-yoyo:hover{
+  transform: scale(1.5);
+  z-index: 1000;
 }
 
 .narrow-video-container {
@@ -276,8 +288,13 @@ body {
   align-items: center;
   height: 243px;
   border-radius: 8px;
+  transition: transform 0.5s ease;
 }
 
+.narrow-video-container:hover{
+  transform: scale(1.5);
+  z-index: 1000;
+}
 
 .horizontal-and-vertical-video-container {
   width: 450px;
@@ -287,6 +304,12 @@ body {
   justify-content: center;
   height: 250px;
   border-radius: 8px;
+  transition: transform 0.5s ease;
+}
+
+.horizontal-and-vertical-video-container:hover{
+  transform: scale(1.5);
+  z-index: 1000;
 }
 
 .vertical-video-container {
@@ -297,6 +320,12 @@ body {
   justify-content: center;
   height: auto;
   border-radius: 8px;
+  transition: transform 0.5s ease;
+}
+
+.vertical-video-container:hover{
+  transform: scale(1.5);
+  z-index: 1000;
 }
 
 .vertical-video-large-container {
@@ -307,6 +336,12 @@ body {
   justify-content: center;
   height: auto;
   border-radius: 8px;
+  transition: transform 0.5s ease;
+}
+
+.vertical-video-large-container:hover{
+  transform: scale(1.5);
+  z-index: 1000;
 }
 
 .wrapper-modal-img {
@@ -322,6 +357,12 @@ body {
   border-radius: 8px;
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
+  transition: transform 0.5s ease;
+}
+
+.wrapper-modal-img:hover{
+  transform: scale(1.5);
+  z-index: 1000;
 }
 
 .wrapper-modal-img-papa {
@@ -337,6 +378,12 @@ body {
   border-radius: 8px;
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
+  transition: transform 0.5s ease;
+}
+
+.wrapper-modal-img-papa:hover{
+  transform: scale(1.5);
+  z-index: 1000;
 }
 
 .wrapper-modal-img-bigger {
@@ -352,7 +399,14 @@ body {
   border-radius: 8px;
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
+  transition: transform 0.5s ease;
 }
+
+.wrapper-modal-img-bigger:hover{
+  transform: scale(1.5);
+  z-index: 1000;
+}
+
 
 /* allow all browsers to display imgs from their rotations */
 img {
@@ -385,4 +439,13 @@ img {
   font-style: italic;
   left: -25px;
   top: 15px;
+}
+
+.img-modal{
+  transition: all 0.5s ease;
+}
+
+.img-modal:hover{
+  transform: scale(1.5);
+  z-index: 1000;
 }
