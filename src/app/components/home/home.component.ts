@@ -100,6 +100,8 @@ export class HomeComponent implements OnInit {
     this.mainSong.play();
     // Change global volume.
     Howler.volume(0.5);
+
+    // Set ages to localStorage
     localStorage.setItem('ericAge', this.ericAge.toString());
     localStorage.setItem('edouardAge', this.edouardAge.toString());
     localStorage.setItem('lauraAge', this.lauraAge.toString());
@@ -110,6 +112,7 @@ export class HomeComponent implements OnInit {
     localStorage.setItem('loanAge', this.loanAge.toString());
     localStorage.setItem('taoAge', this.taoAge.toString());
     localStorage.setItem('kimAge', this.kimAge.toString());
+
   }
 
   getAge(dateString) {

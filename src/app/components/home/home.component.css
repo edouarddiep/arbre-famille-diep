@@ -349,6 +349,7 @@ right connector from last child*/
        border: none;
        font-size: 15px;
        font-weight: 600;
+       width: auto;
        padding: 0 !important;
    }
 

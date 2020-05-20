@@ -79,6 +79,12 @@ body {
   justify-items: center;
 }
 
+.grid-maman {
+  grid-gap: 0;
+  margin-bottom:0;
+  padding-bottom:0;
+}
+
 .grid-two-columns-simple {
   display: grid;
   padding: 20px;
@@ -439,6 +445,7 @@ img {
   font-style: italic;
   left: -25px;
   top: 15px;
+  margin-bottom: 20px;
 }
 
 .img-modal{
