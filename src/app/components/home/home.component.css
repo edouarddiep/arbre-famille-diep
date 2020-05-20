@@ -204,9 +204,9 @@
        list-style-type: none;
        position: relative;
        padding: 20px 5px 0 5px;
-       transition: all 0.5s;
-       -webkit-transition: all 0.5s;
-       -moz-transition: all 0.5s;
+       transition: all 0.5s ease;
+       -webkit-transition: all 0.5s ease;
+       -moz-transition: all 0.5s ease;
    }
 
    .tree li::before, .tree li::after {
@@ -291,15 +291,13 @@ right connector from last child*/
        text-decoration: none;
        color: whitesmoke;
        font-family: arial, verdana, tahoma;
-       font-size: 15px;
-       font-weight: 600;
        display: inline-block;
        border-radius: 5px;
        -webkit-border-radius: 5px;
        -moz-border-radius: 5px;
-       transition: all 0.5s;
-       -webkit-transition: all 0.5s;
-       -moz-transition: all 0.5s;
+       transition: all 0.4s linear;
+       -webkit-transition: all 0.4s linear;
+       -moz-transition: all 0.4s linear;
    }
 
    /*We will apply the hover effect the the lineage of the element also
@@ -317,7 +315,15 @@ right connector from last child*/
        color: #000;
        text-shadow: none;
        border: 2px solid orange;
+       -webkit-transform: scale(1.1);
+       -moz-transform: scale(1.1);
+       -o-transform: scale(1.1);
+       -ms-transform: scale(1.1);
        transform: scale(1.1);
+       -webkit-backface-visibility: hidden;
+       -moz-backface-visibility: hidden;
+       -ms-backface-visibility: hidden;
+       -webkit-font-smoothing: subpixel-antialiased;
        z-index: 999;
    }
 
@@ -341,6 +347,8 @@ right connector from last child*/
    .home-btn {
        background: transparent;
        border: none;
+       font-size: 15px;
+       font-weight: 600;
        padding: 0 !important;
    }
 

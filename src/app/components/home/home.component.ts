@@ -122,7 +122,7 @@ export class HomeComponent implements OnInit {
         break;
       case "laura":
         dialogRef = this.dialog.open(HomeDialogLaura, {
-            panelClass: 'custom-modalbox'
+          panelClass: 'custom-modalbox'
         });
         this.mainSong.mute(true);
         this.lauraSong.seek(.4);
@@ -303,7 +303,25 @@ export class HomeDialogMaman { }
   templateUrl: 'home-dialog-binh.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeDialogBinh {
+export class HomeDialogBinh implements OnInit {
+
+  /* L'âge de Kim qui s'actualise chaque année */
+  kimAge: number;
+
+  ngOnInit(): void {
+    this.kimAge = this.getAge('12.04.2003'); // 4 décembre 2003
+  }
+
+  getAge(dateString) {
+    const today = new Date();
+    const birthDate = new Date(dateString);
+    const month = today.getMonth() - birthDate.getMonth();
+    let age = today.getFullYear() - birthDate.getFullYear();
+    if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  }
 }
 
 @Component({
