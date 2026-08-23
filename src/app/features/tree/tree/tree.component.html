@@ -1,0 +1,84 @@
+<button type="button" class="sound" [class.is-muted]="audio.isAmbientMuted()" [class.is-hidden]="focused()"
+  [attr.tabindex]="focused() ? -1 : null" (click)="audio.toggleAmbient()">
+  <svg class="sound__icon" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M4 9h4l5-4v14l-5-4H4z" />
+    @if (audio.isAmbientMuted()) {
+      <path d="M17 9l5 6M22 9l-5 6" />
+    } @else {
+      <path d="M16.5 8.5a5 5 0 0 1 0 7M19.5 6a8.5 8.5 0 0 1 0 12" />
+    }
+  </svg>
+  <span class="sound__label">{{ audio.isAmbientMuted() ? 'Remettre la musique' : 'Couper la musique' }}</span>
+</button>
+
+<div class="grove">
+  <header class="intro">
+    <h1 class="intro__title"><span>Famille</span><span>Diep</span></h1>
+    <span class="intro__rule" aria-hidden="true"></span>
+    <p class="intro__lede">
+      Entre la Méditerranée et l'Asie,<br />
+      deux héritages, une même histoire.
+    </p>
+  </header>
+
+  <div class="stage">
+    <!-- Méditerranée à gauche, Asie à droite : les deux héritages encadrent l'arbre -->
+    <img class="decor decor--temple" src="assets/art/temple.webp" alt="" loading="lazy" />
+    <img class="decor decor--santorin" src="assets/art/santorin.webp" alt="" loading="lazy" />
+    <img class="decor decor--montagnes" src="assets/art/montagnes.webp" alt="" loading="lazy" />
+    <img class="decor decor--pagode" src="assets/art/pagode.webp" alt="" loading="lazy" />
+    <img class="decor decor--jonque" src="assets/art/jonque.webp" alt="" loading="lazy" />
+    <img class="decor decor--bambou" src="assets/art/bambou.webp" alt="" loading="lazy" />
+    <img class="decor decor--chapeau" src="assets/art/chapeau.webp" alt="" loading="lazy" />
+    <img class="decor decor--lotus" src="assets/art/lotus.webp" alt="" loading="lazy" />
+    <img class="decor decor--rameau" src="assets/art/rameau-double.webp" alt="" loading="lazy" />
+
+    <img class="olive" src="assets/art/arbre.webp" alt="" fetchpriority="high" />
+
+    @for (link of links; track $index) {
+      <img class="link" src="assets/art/lien.webp" alt="" loading="lazy"
+        [style.top.%]="(link.top / stageHeight) * 100"
+        [style.height.%]="(link.height / stageHeight) * 100"
+        [style.width.%]="(link.width / stageWidth) * 100" />
+    }
+
+    @for (tier of tiers; track tier.generation.id) {
+      <img class="arc" src="assets/art/arc.webp" alt="" loading="lazy"
+        [style.top.%]="(tier.forkTop / stageHeight) * 100" [style.width.%]="tier.forkWidth" />
+
+      <p class="tier__label" [style.top.%]="(tier.labelY / stageHeight) * 100">
+        <span class="tier__ordinal">{{ tier.generation.ordinal }}<sup>e</sup> génération</span>
+        <span class="tier__name">{{ tier.generation.label }}</span>
+      </p>
+
+      @for (placed of tier.people; track placed.person.id) {
+        <app-person-card
+          class="node"
+          [attr.data-column]="$index"
+          [style.left.%]="(placed.x / stageWidth) * 100"
+          [style.top.%]="(placed.y / stageHeight) * 100"
+          [person]="placed.person"
+          [filiation]="filiationOf(placed.person)"
+          [highlighted]="highlighted().includes(placed.person.id)"
+          [attr.id]="'personne-' + placed.person.id"
+          (selected)="focused.set($event)"
+          (ascend)="goToParents(parentsOf(placed.person))"
+        />
+      }
+    }
+  </div>
+
+  <footer class="outro">
+    <span class="outro__rule" aria-hidden="true"></span>
+    <p>Deux cultures nous ont été transmises,<br />l'amour nous unit, et nos enfants les feront vivre.</p>
+    <span class="outro__heart" aria-hidden="true">♥</span>
+  </footer>
+
+  <img class="frieze" src="assets/art/frise.webp" alt="" loading="lazy" />
+</div>
+
+@defer (when focused()) {
+  @if (focused(); as person) {
+    <app-person-dialog [person]="person" (dismissed)="focused.set(null)" />
+  }
+}

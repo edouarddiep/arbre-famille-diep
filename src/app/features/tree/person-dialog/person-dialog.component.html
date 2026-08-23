@@ -1,0 +1,143 @@
+<div class="backdrop" (click)="dismissed.emit()"></div>
+
+<article #panel class="panel" tabindex="-1" [attr.inert]="viewerAt() !== null ? '' : null">
+  <!-- Rappel d'origine : Viêt Nam jusqu'à la génération du tronc, Grèce sinon. -->
+  @switch (person().heritage) {
+    @case (Heritage.Vietnamese) {
+      <img class="scene-art scene-art--main" src="assets/art/pagode.webp" alt="" loading="lazy" />
+      <img class="scene-art scene-art--side" src="assets/art/bambou.webp" alt="" loading="lazy" />
+    }
+    @case (Heritage.Greek) {
+      <img class="scene-art scene-art--main" src="assets/art/santorin.webp" alt="" loading="lazy" />
+      <img class="scene-art scene-art--side" src="assets/art/temple.webp" alt="" loading="lazy" />
+    }
+    @default {
+      <img class="scene-art scene-art--side" src="assets/art/rameau-double.webp" alt="" loading="lazy" />
+    }
+  }
+
+  <button type="button" class="panel__close" aria-label="Fermer la fiche" (click)="dismissed.emit()">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+  </button>
+
+  <section class="identity">
+    <header class="identity__head">
+      <span class="identity__portrait">
+        <img [src]="person().avatar" [alt]="person().name" width="128" height="128" decoding="async" />
+        <img class="identity__sprig" src="assets/art/rameau-double.webp" alt="" width="180" height="120" />
+      </span>
+
+      <div>
+        <h2 class="identity__name">
+          {{ firstName() }}
+          @if (person().heritage; as origin) {
+            <span class="flag" [class.flag--vn]="origin === Heritage.Vietnamese" [attr.aria-label]="
+              origin === Heritage.Vietnamese ? 'Origine vietnamienne' : 'Origine grecque'"></span>
+          }
+        </h2>
+        <p class="identity__role">{{ person().role }}</p>
+        <p class="identity__year">{{ person().birth.date.slice(0, 4) }}</p>
+      </div>
+    </header>
+
+    <ul class="facts">
+      <li>
+        <svg class="facts__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="16" rx="2" /><path d="M3 10h18M8 3v4M16 3v4" />
+        </svg>
+        <span>{{ birthLine() }}</span>
+      </li>
+      <li>
+        <svg class="facts__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z" /><circle cx="12" cy="10" r="2.6" />
+        </svg>
+        <span>{{ person().birth.place }}</span>
+      </li>
+      @if (deathLine(); as end) {
+        <li class="facts--gone">
+          <svg class="facts__icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 21c-4-3.4-7-6.2-7-9.6A4.4 4.4 0 0 1 12 8a4.4 4.4 0 0 1 7 3.4c0 3.4-3 6.2-7 9.6z" />
+          </svg>
+          <span>{{ end }}</span>
+        </li>
+      } @else {
+        <li>
+          <svg class="facts__icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" /><path d="M12 7v5l3.5 2" />
+          </svg>
+          <span>{{ age() }} ans aujourd'hui</span>
+        </li>
+      }
+    </ul>
+
+    <h3 class="identity__about">
+      À propos de {{ firstName() }}
+      <span class="identity__flourish" aria-hidden="true"></span>
+    </h3>
+
+    <!-- Seul le récit défile : l'en-tête et la galerie restent en place. -->
+    <div class="identity__scroll" tabindex="0" role="region"
+      [attr.aria-label]="'Récit de ' + firstName()">
+      <div class="prose">
+        @for (paragraph of bio(); track $index) {
+          <p>{{ paragraph }}</p>
+        }
+      </div>
+
+      <blockquote class="motto">
+        <p>{{ motto }}</p>
+        <span class="motto__heart" aria-hidden="true">♥</span>
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <div class="gallery__stage">
+      <!-- La vidéo affichée s'anime d'elle-même, en sourdine ; le son vient en grand. -->
+      <button type="button" class="gallery__frame" [attr.aria-label]="'Agrandir : ' + current().alt"
+        (click)="viewerAt.set(slide())">
+        @if (current(); as item) {
+          @if (item.kind === MediaKind.Video) {
+            <!-- « muted » doit être posée en propriété : l'attribut seul arrive trop tard
+                 pour les navigateurs, qui refuseraient alors la lecture automatique. -->
+            <video [src]="item.src" [poster]="item.poster" [attr.aria-label]="item.alt" [muted]="true"
+              autoplay loop playsinline preload="auto"></video>
+          } @else {
+            <img [src]="item.preview ?? item.src" [alt]="item.alt" decoding="async" />
+          }
+        }
+        <span class="gallery__expand" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M9 4H4v5M20 9V4h-5M15 20h5v-5M4 15v5h5" /></svg>
+        </span>
+      </button>
+
+      @if (person().media.length > 1) {
+        <button type="button" class="gallery__nav gallery__nav--prev" aria-label="Photo précédente" (click)="step(-1)">
+          <span aria-hidden="true">‹</span>
+        </button>
+        <button type="button" class="gallery__nav gallery__nav--next" aria-label="Photo suivante" (click)="step(1)">
+          <span aria-hidden="true">›</span>
+        </button>
+      }
+    </div>
+
+    <div class="gallery__thumbs">
+      @for (item of person().media; track item.src; let i = $index) {
+        <button type="button" class="gallery__thumb" [class.is-current]="slide() === i"
+          [attr.aria-label]="'Voir la photo ' + (i + 1)" [attr.aria-current]="slide() === i" (click)="slide.set(i)">
+          <img [src]="item.preview ?? item.poster ?? item.src" [alt]="item.alt" loading="lazy" decoding="async" />
+        </button>
+      }
+    </div>
+
+    <div class="gallery__dots" aria-hidden="true">
+      @for (item of person().media; track item.src; let i = $index) {
+        <span [class.is-current]="slide() === i"></span>
+      }
+    </div>
+  </section>
+</article>
+
+@if (viewerAt() !== null) {
+  <app-media-viewer [media]="person().media" [startAt]="viewerAt()!" (closed)="viewerAt.set(null)" />
+}

@@ -1,0 +1,190 @@
+/* Le médaillon est posé sur un point du repère : tout est en unités de conteneur,
+   donc chaque personne garde sa place exacte à toutes les largeurs d'écran. */
+:host {
+  position: absolute;
+  translate: -50% -50%;
+  width: 19cqw;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+
+.medallion {
+  position: relative;
+  z-index: 1;
+  width: max(3.4rem, 13.6cqw);
+  height: max(3.4rem, 13.6cqw);
+  padding: 0.5cqw;
+  border-radius: 50%;
+  background: var(--marble);
+  box-shadow: 0 0 0 0.24cqw color-mix(in oklab, var(--leaf) 60%, transparent);
+  cursor: pointer;
+  transition: box-shadow 0.4s var(--ease), transform 0.4s var(--ease);
+
+  img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+  }
+
+  &:hover,
+  &:focus-visible {
+    transform: scale(1.04);
+    box-shadow: 0 0 0 0.38cqw color-mix(in oklab, var(--accent) 65%, transparent);
+  }
+}
+
+/* Cartouche : sans fond, les noms se perdaient dans le feuillage. */
+.plate {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  justify-items: center;
+  gap: 0;
+  width: 100%;
+  margin-top: -1.5cqw;
+  padding: max(0.15rem, 0.42cqw) max(0.5rem, 1.6cqw);
+  border: 1px solid color-mix(in oklab, var(--leaf) 42%, transparent);
+  border-radius: 3px;
+  background: color-mix(in oklab, var(--marble) 92%, var(--sky));
+  box-shadow: 0 1px 4px rgb(63 82 51 / 14%);
+
+  /* Pans de ruban, échancrés comme sur une banderole. */
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 26%;
+    width: max(0.5rem, 1.7cqw);
+    height: 48%;
+    background: color-mix(in oklab, var(--leaf) 62%, var(--marble));
+  }
+
+  &::before {
+    left: max(-0.5rem, -1.7cqw);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 42% 50%);
+  }
+
+  &::after {
+    right: max(-0.5rem, -1.7cqw);
+    clip-path: polygon(0 0, 100% 0, 58% 50%, 100% 100%, 0 100%);
+  }
+}
+
+/* Deux lignes serrées : la banderole reste fine, comme un ruban peint. */
+.plate__role {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  font-size: max(0.5rem, 1.15cqw);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0.14em;
+  text-indent: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-dim);
+}
+
+.plate__year::before {
+  content: '·';
+  margin: 0 0.5em;
+}
+
+.plate__name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45em;
+  font-family: var(--font-display);
+  font-size: max(0.76rem, 2.1cqw);
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: 0.015em;
+  white-space: nowrap;
+  color: var(--ink);
+
+  /* Rappel d'origine, à l'échelle du ruban. */
+  .flag {
+    --flag-width: max(0.6rem, 1.65cqw);
+
+    flex: none;
+  }
+}
+
+/* Sur l'arbre resserré du mobile, la ligne « parenté · année » ne tient plus :
+   elle se replie en deux lignes plutôt que de mordre sur le ruban voisin. */
+@container (max-width: 560px) {
+  .plate {
+    padding-inline: max(0.25rem, 1.2cqw);
+  }
+
+  .plate__role {
+    flex-direction: column;
+    align-items: center;
+    font-size: max(0.44rem, 1.15cqw);
+    letter-spacing: 0.1em;
+    text-indent: 0.1em;
+  }
+
+  .plate__year::before {
+    content: none;
+  }
+
+  .plate__name {
+    gap: 0.3em;
+    font-size: max(0.64rem, 2.1cqw);
+
+    .flag {
+      --flag-width: max(0.5rem, 1.65cqw);
+    }
+  }
+}
+
+.node__origin {
+  margin-top: 0.4cqw;
+  min-width: 44px;
+  min-height: 44px;
+  display: grid;
+  place-items: center;
+  font-size: max(0.85rem, 1.9cqw);
+  line-height: 1;
+  color: color-mix(in oklab, var(--gold) 70%, var(--ink));
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity 0.3s var(--ease);
+
+  &:hover,
+  &:focus-visible {
+    opacity: 1;
+  }
+}
+
+:host(.is-highlighted) .medallion {
+  animation: found 2.6s var(--ease);
+}
+
+@keyframes found {
+  0% {
+    box-shadow: 0 0 0 0.24cqw color-mix(in oklab, var(--leaf) 60%, transparent);
+  }
+
+  18%,
+  70% {
+    box-shadow: 0 0 0 0.95cqw color-mix(in oklab, var(--accent) 70%, transparent);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0.24cqw color-mix(in oklab, var(--leaf) 60%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .medallion {
+    transition: none;
+  }
+}

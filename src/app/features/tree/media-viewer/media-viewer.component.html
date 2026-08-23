@@ -1,0 +1,66 @@
+<div class="scrim" (click)="closed.emit()"></div>
+
+<button #closeButton type="button" class="viewer__close" aria-label="Fermer la visionneuse" (click)="closed.emit()">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+</button>
+
+<div class="viewer">
+  @if (index() > 0) {
+    <button type="button" class="viewer__nav viewer__nav--prev" aria-label="Photo précédente" (click)="step(-1)">
+      <span aria-hidden="true">‹</span>
+    </button>
+  }
+
+  <div
+    #track
+    class="viewer__track"
+    tabindex="0"
+    role="group"
+    aria-label="Photos, faites défiler ou utilisez les flèches"
+    (scroll)="onScroll()"
+  >
+    @for (item of media(); track item.src; let i = $index) {
+      <div #slide class="viewer__slide">
+        @if (item.kind === MediaKind.Image) {
+          <img [src]="item.src" [alt]="item.alt" decoding="async" />
+        } @else {
+          <video
+            #clip
+            [src]="item.src"
+            [poster]="item.poster"
+            [muted]="true"
+            [attr.data-slide]="i"
+            [attr.aria-label]="item.alt"
+            controls
+            playsinline
+            preload="auto"
+          ></video>
+        }
+      </div>
+    }
+  </div>
+
+  @if (index() < media().length - 1) {
+    <button type="button" class="viewer__nav viewer__nav--next" aria-label="Photo suivante" (click)="step(1)">
+      <span aria-hidden="true">›</span>
+    </button>
+  }
+</div>
+
+<div class="filmstrip">
+  <p class="filmstrip__count">{{ index() + 1 }} sur {{ media().length }}</p>
+  <div class="filmstrip__reel">
+    @for (item of media(); track item.src) {
+      <button
+        type="button"
+        class="filmstrip__thumb"
+        [class.is-current]="index() === $index"
+        [attr.aria-label]="'Voir la photo ' + ($index + 1)"
+        [attr.aria-current]="index() === $index"
+        (click)="jump($index)"
+      >
+        <img [src]="item.poster ?? item.src" [alt]="item.alt" loading="lazy" decoding="async" />
+      </button>
+    }
+  </div>
+</div>

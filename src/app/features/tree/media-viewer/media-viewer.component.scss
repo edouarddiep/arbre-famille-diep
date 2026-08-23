@@ -1,0 +1,208 @@
+:host {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  animation: viewer-in 0.3s var(--ease) both;
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: rgb(38 46 30 / 93%);
+  backdrop-filter: blur(8px);
+}
+
+/* Même croix que sur la fiche : un seul signe pour fermer, partout. */
+.viewer__close {
+  position: absolute;
+  top: var(--close-inset);
+  right: var(--close-inset);
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 2px solid rgb(255 255 255 / 55%);
+  border-radius: 50%;
+  background: rgb(255 255 255 / 14%);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s var(--ease), border-color 0.3s var(--ease), color 0.3s var(--ease),
+    scale 0.3s var(--ease);
+
+  svg {
+    width: 1.2rem;
+    height: 1.2rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+  }
+
+  &:hover,
+  &:focus-visible {
+    background: #fff;
+    border-color: #fff;
+    color: var(--sea-deep);
+    scale: 1.06;
+  }
+}
+
+.viewer {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Défilement natif avec accroche : le glissé au doigt est fluide sans code. */
+/* Positionné en absolu : sa hauteur vient des décalages, jamais du contenu.
+   C'est ce qui permet aux images de se contraindre au lieu de dicter la hauteur. */
+.viewer__track {
+  position: absolute;
+  inset: clamp(3.5rem, 8vh, 5rem) 0 0.5rem;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior: contain;
+  /* Le rail n'hérite pas du défilement doux de la page : à l'ouverture, il doit
+     être posé sur la bonne photo, pas la rejoindre en glissant depuis la première. */
+  scroll-behavior: auto;
+  /* Le rail ne doit pas être réancré quand une image se charge : ce décalage
+     laissait apparaître un bord de la photo voisine. */
+  overflow-anchor: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Les marges latérales sont dans la diapositive, pas dans le calage de l'image :
+   posée en absolu, « max-width: 100% » se résolvait sur la diapositive entière et
+   la photo débordait sur la voisine au lieu de rester centrée. */
+.viewer__slide {
+  position: relative;
+  flex: 0 0 100%;
+  height: 100%;
+  scroll-snap-align: center;
+  display: grid;
+  place-items: center;
+  padding: 0 clamp(0.75rem, 8vw, 6rem);
+}
+
+.viewer__slide img,
+.viewer__slide video {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: var(--radius);
+  box-shadow: 0 30px 80px -30px rgb(0 0 0 / 70%);
+}
+
+.viewer__nav {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  translate: 0 -50%;
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 2px solid rgb(255 255 255 / 45%);
+  border-radius: 50%;
+  background: rgb(255 255 255 / 12%);
+  color: #fff;
+  font-size: 2.25rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.3s var(--ease), border-color 0.3s var(--ease);
+
+  span {
+    /* Recentre le chevron, dont la chasse est asymétrique. */
+    margin-top: -0.18em;
+  }
+
+  &:hover {
+    background: rgb(255 255 255 / 26%);
+    border-color: #fff;
+  }
+}
+
+.viewer__nav--prev {
+  left: clamp(0.5rem, 2vw, 1.5rem);
+}
+
+.viewer__nav--next {
+  right: clamp(0.5rem, 2vw, 1.5rem);
+}
+
+.filmstrip {
+  position: relative;
+  flex: none;
+  display: grid;
+  gap: 0.6rem;
+  justify-items: center;
+  padding: 0.75rem 1rem max(1rem, env(safe-area-inset-bottom));
+}
+
+.filmstrip__count {
+  margin: 0;
+  color: rgb(255 255 255 / 82%);
+  font-size: 1rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.filmstrip__reel {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 0.25rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgb(255 255 255 / 35%) transparent;
+}
+
+.filmstrip__thumb {
+  flex: none;
+  width: 5.75rem;
+  height: 4.5rem;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity 0.3s var(--ease), border-color 0.3s var(--ease);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &.is-current {
+    opacity: 1;
+    border-color: #fff;
+  }
+}
+
+@keyframes viewer-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :host {
+    animation: none;
+  }
+}

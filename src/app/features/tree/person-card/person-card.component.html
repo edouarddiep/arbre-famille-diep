@@ -1,0 +1,23 @@
+<button type="button" class="medallion" (click)="selected.emit(person())">
+  <img [src]="person().thumbnail" [alt]="person().name" width="160" height="160" loading="lazy" decoding="async" />
+</button>
+
+<span class="plate">
+  <span class="plate__role">
+    <span>{{ person().role }}</span>
+    <span class="plate__year">{{ birthYear() }}</span>
+  </span>
+  <span class="plate__name">
+    {{ person().name.split(' ')[0] }}
+    @if (person().heritage; as origin) {
+      <span class="flag" [class.flag--vn]="origin === Heritage.Vietnamese" [attr.aria-label]="
+        origin === Heritage.Vietnamese ? 'Origine vietnamienne' : 'Origine grecque'"></span>
+    }
+  </span>
+</span>
+
+@if (filiation(); as origin) {
+  <button type="button" class="node__origin" [attr.aria-label]="'Remonter vers ' + origin" (click)="ascend.emit()">
+    ↑
+  </button>
+}
