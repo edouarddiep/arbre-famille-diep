@@ -184,6 +184,17 @@ const PEOPLE = {
     ],
     song: { src: 'assets/audio/rendez_vous_dans_10_ans.mp3', startAt: 0.4 },
   },
+  stephane: {
+    id: 'stephane',
+    name: 'Stéphane',
+    voice: 'Je suis Stéphane',
+    role: 'Beau-frère',
+    feminine: false,
+    accent: '#557a6b',
+    birth: { date: '1977-03-13' },
+    bio: [],
+    media: [],
+  },
   eric: {
     id: 'eric',
     name: 'Eric DIEP',
@@ -233,6 +244,17 @@ const PEOPLE = {
       { kind: MediaKind.Image, src: 'assets/photos/edouard_modal0.webp', preview: 'assets/photos/edouard_modal0-md.webp', alt: 'Photo de Edouard DIEP' },
     ],
     song: { src: 'assets/audio/kokiri_forest.mp3', startAt: 5.5 },
+  },
+  lydie: {
+    id: 'lydie',
+    name: 'Lydie',
+    voice: 'Je suis Lydie',
+    role: 'Épouse',
+    feminine: true,
+    accent: '#a8617a',
+    birth: { date: '1996-03-30', place: 'Nyon, Vaud' },
+    bio: [],
+    media: [],
   },
   kim: {
     id: 'kim',
@@ -355,6 +377,18 @@ const PEOPLE = {
     ],
     song: { src: 'assets/audio/tao_tao.mp3', startAt: 1 },
   },
+  luana: {
+    id: 'luana',
+    name: 'Luana',
+    voice: 'Je suis Luana',
+    role: 'Fille',
+    feminine: true,
+    parents: ['edouard', 'lydie'],
+    accent: '#d99a5b',
+    birth: { date: '2026-08-26', place: 'Morges, Vaud' },
+    bio: [],
+    media: [],
+  },
 } as const satisfies Record<string, Person>;
 
 export const PEOPLE_BY_ID: Readonly<Record<string, Person>> = PEOPLE;
@@ -383,9 +417,11 @@ export const FAMILY: readonly Generation[] = [
     id: 'branches',
     ordinal: 'III',
     label: 'Les branches',
-    caption: 'Genève · 1979 — 2003',
+    caption: 'Genève · 1977 — 2003',
     bonds: [
       { type: BondType.Siblings, members: [PEOPLE.laura, PEOPLE.eric, PEOPLE.edouard] },
+      { type: BondType.Union, members: [PEOPLE.laura, PEOPLE.stephane] },
+      { type: BondType.Union, members: [PEOPLE.edouard, PEOPLE.lydie] },
       { type: BondType.Solo, members: [PEOPLE.kim] },
     ],
   },
@@ -393,9 +429,10 @@ export const FAMILY: readonly Generation[] = [
     id: 'buds',
     ordinal: 'IV',
     label: 'Les bourgeons',
-    caption: 'Genève · Gland · 2003 — 2010',
+    caption: 'Genève · Gland · Morges · 2003 — 2026',
     bonds: [
       { type: BondType.Siblings, members: [PEOPLE.linh, PEOPLE.nam, PEOPLE.loan, PEOPLE.tao] },
+      { type: BondType.Solo, members: [PEOPLE.luana] },
     ],
   },
 ];

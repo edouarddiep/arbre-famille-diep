@@ -140,13 +140,34 @@
 
   isolation: isolate;
 
-  > img:first-child {
+  .identity__photo {
     width: 100%;
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
     box-shadow: 0 0 0 1px var(--marble), 0 0 0 3px color-mix(in oklab, var(--gold) 60%, transparent);
   }
+
+  /* En attendant un portrait : l'initiale tient la place, dans le même cerclage. */
+  .identity__monogram {
+    display: grid;
+    place-items: center;
+    background: color-mix(in oklab, var(--sky) 70%, var(--marble));
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4.5vw, 2.9rem);
+    font-weight: 300;
+    line-height: 1;
+    color: color-mix(in oklab, var(--accent) 70%, var(--ink));
+  }
+}
+
+/* Sans galerie, la fiche n'a plus de seconde colonne à remplir : elle se resserre
+   plutôt que d'étirer le récit sur toute la largeur. */
+.panel--sans-media {
+  grid-template-columns: minmax(0, 1fr);
+  width: min(42rem, 100%);
+  height: auto;
+  max-height: min(38rem, 100%);
 }
 
 /* Le rameau se glisse sous le médaillon, comme dans la maquette. */
@@ -244,6 +265,11 @@
 
   p {
     margin: 0 0 1rem;
+  }
+
+  /* Le vide se dit, il ne se subit pas. */
+  .prose__pending {
+    color: var(--ink-dim);
   }
 }
 

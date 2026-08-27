@@ -1,6 +1,7 @@
 <div class="backdrop" (click)="dismissed.emit()"></div>
 
-<article #panel class="panel" tabindex="-1" [attr.inert]="viewerAt() !== null ? '' : null">
+<article #panel class="panel" tabindex="-1" [class.panel--sans-media]="!person().media.length"
+  [attr.inert]="viewerAt() !== null ? '' : null">
   <!-- Rappel d'origine : Viêt Nam jusqu'à la génération du tronc, Grèce sinon. -->
   @switch (person().heritage) {
     @case (Heritage.Vietnamese) {
@@ -23,7 +24,11 @@
   <section class="identity">
     <header class="identity__head">
       <span class="identity__portrait">
-        <img [src]="person().avatar" [alt]="person().name" width="128" height="128" decoding="async" />
+        @if (person().avatar; as portrait) {
+          <img class="identity__photo" [src]="portrait" [alt]="person().name" width="128" height="128" decoding="async" />
+        } @else {
+          <span class="identity__photo identity__monogram" [attr.aria-label]="person().name">{{ initial() }}</span>
+        }
         <img class="identity__sprig" src="assets/art/rameau-double.webp" alt="" width="180" height="120" />
       </span>
 
@@ -47,12 +52,14 @@
         </svg>
         <span>{{ birthLine() }}</span>
       </li>
-      <li>
-        <svg class="facts__icon" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z" /><circle cx="12" cy="10" r="2.6" />
-        </svg>
-        <span>{{ person().birth.place }}</span>
-      </li>
+      @if (person().birth.place; as cradle) {
+        <li>
+          <svg class="facts__icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z" /><circle cx="12" cy="10" r="2.6" />
+          </svg>
+          <span>{{ cradle }}</span>
+        </li>
+      }
       @if (deathLine(); as end) {
         <li class="facts--gone">
           <svg class="facts__icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -65,7 +72,7 @@
           <svg class="facts__icon" viewBox="0 0 24 24" aria-hidden="true">
             <circle cx="12" cy="12" r="9" /><path d="M12 7v5l3.5 2" />
           </svg>
-          <span>{{ age() }} ans aujourd'hui</span>
+          <span>{{ age() }}</span>
         </li>
       }
     </ul>
@@ -81,6 +88,8 @@
       <div class="prose">
         @for (paragraph of bio(); track $index) {
           <p>{{ paragraph }}</p>
+        } @empty {
+          <p class="prose__pending">Son histoire reste à écrire.</p>
         }
       </div>
 
@@ -91,6 +100,7 @@
     </div>
   </section>
 
+  @if (person().media.length) {
   <section class="gallery">
     <div class="gallery__stage">
       <!-- La vidéo affichée s'anime d'elle-même, en sourdine ; le son vient en grand. -->
@@ -136,6 +146,7 @@
       }
     </div>
   </section>
+  }
 </article>
 
 @if (viewerAt() !== null) {

@@ -23,4 +23,5 @@ export class PersonCardComponent {
   readonly ascend = output<void>();
 
   protected readonly birthYear = computed(() => this.person().birth.date.slice(0, 4));
+  protected readonly initial = computed(() => this.person().name.charAt(0));
 }

@@ -1,5 +1,9 @@
 <button type="button" class="medallion" (click)="selected.emit(person())">
-  <img [src]="person().thumbnail" [alt]="person().name" width="160" height="160" loading="lazy" decoding="async" />
+  @if (person().thumbnail; as portrait) {
+    <img [src]="portrait" [alt]="person().name" width="160" height="160" loading="lazy" decoding="async" />
+  } @else {
+    <span class="medallion__initial" [attr.aria-label]="person().name">{{ initial() }}</span>
+  }
 </button>
 
 <span class="plate">

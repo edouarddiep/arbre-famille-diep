@@ -129,7 +129,7 @@
 /* ------------------------------------------------- scène à échelle fixe */
 
 .stage {
-  container-type: inline-size;
+  container: stage / inline-size;
   position: relative;
   width: 100%;
   aspect-ratio: 1000 / 2210;
@@ -367,7 +367,7 @@
 
 /* ------------------------------------------------------------ adaptations */
 
-@container (max-width: 560px) {
+@container stage (max-width: 560px) {
   .node__origin {
     display: none;
   }

@@ -55,6 +55,7 @@
         <app-person-card
           class="node"
           [attr.data-column]="$index"
+          [style.--node-width]="tier.nodeWidth"
           [style.left.%]="(placed.x / stageWidth) * 100"
           [style.top.%]="(placed.y / stageHeight) * 100"
           [person]="placed.person"

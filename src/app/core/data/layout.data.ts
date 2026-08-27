@@ -27,6 +27,8 @@ export interface Band {
   readonly generationId: string;
   /** Demi-portée de l'arc aquarellé, en unités de repère. */
   readonly reach: number;
+  /** Largeur d'un médaillon et de son ruban : elle se resserre quand la génération s'élargit. */
+  readonly nodeWidth: number;
   readonly labelY: number;
   readonly slots: readonly Slot[];
 }
@@ -35,6 +37,7 @@ export const BANDS: readonly Band[] = [
   {
     generationId: 'roots',
     reach: 358,
+    nodeWidth: 180,
     labelY: 560,
     slots: [
       { id: 'an', x: 176, y: 706 },
@@ -46,6 +49,7 @@ export const BANDS: readonly Band[] = [
   {
     generationId: 'trunk',
     reach: 232,
+    nodeWidth: 180,
     labelY: 1006,
     slots: [
       { id: 'binh', x: 396, y: 1152 },
@@ -54,24 +58,30 @@ export const BANDS: readonly Band[] = [
   },
   {
     generationId: 'branches',
-    reach: 392,
+    // Six médaillons : la branche s'ouvre davantage et chacun se resserre.
+    reach: 470,
+    nodeWidth: 140,
     labelY: 1452,
     slots: [
-      { id: 'laura', x: 150, y: 1598 },
-      { id: 'eric', x: 383, y: 1598 },
-      { id: 'edouard', x: 617, y: 1598 },
-      { id: 'kim', x: 850, y: 1598 },
+      { id: 'laura', x: 84, y: 1598 },
+      { id: 'stephane', x: 250, y: 1598 },
+      { id: 'eric', x: 417, y: 1598 },
+      { id: 'edouard', x: 583, y: 1598 },
+      { id: 'lydie', x: 750, y: 1598 },
+      { id: 'kim', x: 916, y: 1598 },
     ],
   },
   {
     generationId: 'buds',
-    reach: 402,
+    reach: 460,
+    nodeWidth: 165,
     labelY: 1898,
     slots: [
-      { id: 'linh', x: 158, y: 2044 },
-      { id: 'nam', x: 385, y: 2044 },
-      { id: 'loan', x: 615, y: 2044 },
-      { id: 'tao', x: 842, y: 2044 },
+      { id: 'linh', x: 100, y: 2044 },
+      { id: 'nam', x: 300, y: 2044 },
+      { id: 'loan', x: 500, y: 2044 },
+      { id: 'tao', x: 700, y: 2044 },
+      { id: 'luana', x: 900, y: 2044 },
     ],
   },
 ];

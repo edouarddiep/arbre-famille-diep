@@ -43,6 +43,8 @@ interface Tier {
   /** Fourche aquarellée : arcs à hauteur des visages, tige pointant vers le bas. */
   readonly forkTop: number;
   readonly forkWidth: number;
+  /** Largeur d'un médaillon, en unités du conteneur qu'est la scène. */
+  readonly nodeWidth: string;
   readonly people: readonly Placed[];
 }
 
@@ -74,6 +76,7 @@ export class TreeComponent {
       labelY: band.labelY,
       forkTop: arcTop(band),
       forkWidth: (width / STAGE_WIDTH) * 100,
+      nodeWidth: `${(band.nodeWidth / STAGE_WIDTH) * 100}cqw`,
       people,
     };
   });

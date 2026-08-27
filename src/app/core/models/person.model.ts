@@ -3,7 +3,8 @@ import { MediaKind } from './media-kind.enum';
 
 export interface LifeEvent {
   readonly date: string;
-  readonly place: string;
+  /** Absent tant que le lieu n'est pas connu : la ligne n'est alors pas affichée. */
+  readonly place?: string;
   readonly time?: string;
 }
 
@@ -34,11 +35,13 @@ export interface Person {
   /** Identifiants des parents dans la génération précédente. */
   readonly parents?: readonly string[];
   readonly accent: string;
-  readonly avatar: string;
-  readonly thumbnail: string;
+  /** Sans portrait, la fiche et le médaillon affichent le monogramme du prénom. */
+  readonly avatar?: string;
+  readonly thumbnail?: string;
   readonly birth: LifeEvent;
   readonly death?: LifeEvent;
   readonly bio: readonly string[];
   readonly media: readonly Media[];
-  readonly song: Song;
+  /** Sans thème, la fiche laisse la musique d'ambiance se poursuivre. */
+  readonly song?: Song;
 }

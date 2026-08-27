@@ -4,7 +4,7 @@ import { Heritage } from '../../../core/models/heritage.enum';
 import { MediaKind } from '../../../core/models/media-kind.enum';
 import { Person } from '../../../core/models/person.model';
 import { AudioService } from '../../../core/services/audio.service';
-import { computeAge, formatDate } from '../../../core/utils/age.util';
+import { computeAge, formatAge, formatDate } from '../../../core/utils/age.util';
 import { FocusTrapDirective } from '../../../shared/directives/focus-trap.directive';
 import { MediaViewerComponent } from '../media-viewer/media-viewer.component';
 
@@ -40,7 +40,8 @@ export class PersonDialogComponent {
   protected readonly slide = signal(0);
 
   protected readonly firstName = computed(() => this.person().name.split(' ')[0]);
-  protected readonly age = computed(() => computeAge(this.person().birth.date));
+  protected readonly age = computed(() => formatAge(this.person().birth.date));
+  protected readonly initial = computed(() => this.person().name.charAt(0));
   protected readonly current = computed(() => this.person().media[this.slide()]);
 
   protected readonly birthLine = computed(() => {
@@ -51,7 +52,11 @@ export class PersonDialogComponent {
 
   protected readonly deathLine = computed(() => {
     const { feminine, death } = this.person();
-    return death ? `${feminine ? 'Décédée' : 'Décédé'} le ${formatDate(death.date)} à ${death.place}` : null;
+    if (!death) {
+      return null;
+    }
+    const place = death.place ? ` à ${death.place}` : '';
+    return `${feminine ? 'Décédée' : 'Décédé'} le ${formatDate(death.date)}${place}`;
   });
 
   /** Résout les jetons «{age:id}» hérités des anciens templates. */
@@ -66,7 +71,10 @@ export class PersonDialogComponent {
     const opener = document.activeElement as HTMLElement | null;
 
     afterNextRender(() => {
-      this.audio.focusOn(this.person().song);
+      const song = this.person().song;
+      if (song) {
+        this.audio.focusOn(song);
+      }
       this.panel().nativeElement.focus();
     });
 

@@ -1,46 +1,83 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
+# Voir http://help.github.com/ignore-files/ pour la syntaxe.
+#
+# À NOTER : « docs/ » est volontairement versionné — c'est le site publié par
+# GitHub Pages. Ses fichiers « chunk-*.js », « main-*.js » et « styles-*.css »
+# portent une empreinte qui change à chaque build : ils doivent être commités,
+# sinon la mise en ligne casse. Ne les ajoutez pas ici.
 
-# compiled output
+# Dépendances
+/node_modules
+
+# Sorties de compilation
 /dist
 /tmp
 /out-tsc
-# Only exists if Bazel was run
 /bazel-out
 
-# dependencies
-/node_modules
+# Caches de build : locaux à la machine, jamais partagés
+/.angular
+.eslintcache
+*.tsbuildinfo
+/.nx
 
-# profiling files
+# Dossier créé par erreur par un outil externe
+/undefined
+
+# Vidéos originales : trop lourdes pour le dépôt (~500 Mo) et jamais publiées —
+# seuls leurs dérivés « src/assets/clips » le sont, et eux restent versionnés.
+# Gardez-en une copie ailleurs : GitHub ne les sauvegarde plus.
+/src/assets/videos
+
+# Notes internes : tout ce qui suppose le code en local et une republication
+# (guides de saisie, mémos, brouillons). Rien de ce dossier n'est publié.
+/notes/
+
+# Tests et couverture
+/coverage
+testem.log
+
+# Profilage
 chrome-profiler-events.json
 speed-measure-plugin.json
 
-# IDEs and editors
+# Archives et exports intermédiaires (les originaux décompressés suffisent)
+*.zip
+*.rar
+*.7z
+
+# Variables d'environnement locales
+.env
+.env.*
+!.env.example
+
+# Journaux
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# IDE et éditeurs
 /.idea
+/.vscode/*
+!/.vscode/settings.json
+!/.vscode/tasks.json
+!/.vscode/launch.json
+!/.vscode/extensions.json
 .project
 .classpath
+.settings/
 .c9/
 *.launch
-.settings/
 *.sublime-workspace
-
-# IDE - VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
 .history/*
 
-# misc
+# Divers
 /.sass-cache
 /connect.lock
-/coverage
 /libpeerconnection.log
-npm-debug.log
-yarn-error.log
-testem.log
 /typings
 
-# System Files
+# Fichiers système
 .DS_Store
 Thumbs.db

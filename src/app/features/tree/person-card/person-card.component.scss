@@ -1,9 +1,12 @@
-/* Le médaillon est posé sur un point du repère : tout est en unités de conteneur,
-   donc chaque personne garde sa place exacte à toutes les largeurs d'écran. */
+/* Le médaillon est posé sur un point du repère : sa largeur vient de la scène,
+   donc chaque personne garde sa place exacte à toutes les largeurs d'écran.
+   La carte est elle-même un conteneur : tout ce qu'elle contient se mesure sur
+   elle, et une génération plus nombreuse n'a qu'à réduire cette seule valeur. */
 :host {
   position: absolute;
   translate: -50% -50%;
-  width: 19cqw;
+  width: var(--node-width, 19cqw);
+  container-type: inline-size;
   display: grid;
   justify-items: center;
   text-align: center;
@@ -12,12 +15,12 @@
 .medallion {
   position: relative;
   z-index: 1;
-  width: max(3.4rem, 13.6cqw);
-  height: max(3.4rem, 13.6cqw);
-  padding: 0.5cqw;
+  width: max(2.6rem, 71.6cqw);
+  height: max(2.6rem, 71.6cqw);
+  padding: 2.6cqw;
   border-radius: 50%;
   background: var(--marble);
-  box-shadow: 0 0 0 0.24cqw color-mix(in oklab, var(--leaf) 60%, transparent);
+  box-shadow: 0 0 0 1.26cqw color-mix(in oklab, var(--leaf) 60%, transparent);
   cursor: pointer;
   transition: box-shadow 0.4s var(--ease), transform 0.4s var(--ease);
 
@@ -30,10 +33,25 @@
     display: block;
   }
 
+  /* En attendant un portrait : l'initiale, sur le même disque de marbre. */
+  .medallion__initial {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: color-mix(in oklab, var(--sky) 70%, var(--marble));
+    font-family: var(--font-display);
+    font-size: max(1.1rem, 34cqw);
+    font-weight: 300;
+    line-height: 1;
+    color: color-mix(in oklab, var(--accent) 70%, var(--ink));
+  }
+
   &:hover,
   &:focus-visible {
     transform: scale(1.04);
-    box-shadow: 0 0 0 0.38cqw color-mix(in oklab, var(--accent) 65%, transparent);
+    box-shadow: 0 0 0 2cqw color-mix(in oklab, var(--accent) 65%, transparent);
   }
 }
 
@@ -45,8 +63,8 @@
   justify-items: center;
   gap: 0;
   width: 100%;
-  margin-top: -1.5cqw;
-  padding: max(0.15rem, 0.42cqw) max(0.5rem, 1.6cqw);
+  margin-top: -7.9cqw;
+  padding: max(0.15rem, 2.2cqw) max(0.5rem, 8.4cqw);
   border: 1px solid color-mix(in oklab, var(--leaf) 42%, transparent);
   border-radius: 3px;
   background: color-mix(in oklab, var(--marble) 92%, var(--sky));
@@ -58,18 +76,18 @@
     content: '';
     position: absolute;
     top: 26%;
-    width: max(0.5rem, 1.7cqw);
+    width: max(0.5rem, 8.9cqw);
     height: 48%;
     background: color-mix(in oklab, var(--leaf) 62%, var(--marble));
   }
 
   &::before {
-    left: max(-0.5rem, -1.7cqw);
+    left: max(-0.5rem, -8.9cqw);
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 42% 50%);
   }
 
   &::after {
-    right: max(-0.5rem, -1.7cqw);
+    right: max(-0.5rem, -8.9cqw);
     clip-path: polygon(0 0, 100% 0, 58% 50%, 100% 100%, 0 100%);
   }
 }
@@ -79,7 +97,7 @@
   display: flex;
   align-items: baseline;
   justify-content: center;
-  font-size: max(0.5rem, 1.15cqw);
+  font-size: max(0.5rem, 6.05cqw);
   font-weight: 500;
   line-height: 1.35;
   letter-spacing: 0.14em;
@@ -101,7 +119,7 @@
   justify-content: center;
   gap: 0.45em;
   font-family: var(--font-display);
-  font-size: max(0.76rem, 2.1cqw);
+  font-size: max(0.76rem, 11.05cqw);
   font-weight: 400;
   line-height: 1.25;
   letter-spacing: 0.015em;
@@ -110,7 +128,7 @@
 
   /* Rappel d'origine, à l'échelle du ruban. */
   .flag {
-    --flag-width: max(0.6rem, 1.65cqw);
+    --flag-width: max(0.6rem, 8.7cqw);
 
     flex: none;
   }
@@ -118,17 +136,17 @@
 
 /* Sur l'arbre resserré du mobile, la ligne « parenté · année » ne tient plus :
    elle se replie en deux lignes plutôt que de mordre sur le ruban voisin. */
-@container (max-width: 560px) {
+@container stage (max-width: 560px) {
   .plate {
-    padding-inline: max(0.25rem, 1.2cqw);
+    padding-inline: max(0.15rem, 6.3cqw);
   }
 
   .plate__role {
     flex-direction: column;
     align-items: center;
-    font-size: max(0.44rem, 1.15cqw);
-    letter-spacing: 0.1em;
-    text-indent: 0.1em;
+    font-size: max(0.42rem, 6.05cqw);
+    letter-spacing: 0.05em;
+    text-indent: 0.05em;
   }
 
   .plate__year::before {
@@ -137,21 +155,27 @@
 
   .plate__name {
     gap: 0.3em;
-    font-size: max(0.64rem, 2.1cqw);
+    font-size: max(0.62rem, 11.05cqw);
 
     .flag {
-      --flag-width: max(0.5rem, 1.65cqw);
+      --flag-width: max(0.5rem, 8.7cqw);
     }
   }
 }
 
+/* Hors du flux : sinon les cartes qui la portent seraient plus hautes que les
+   autres, et le centrage sur le point de l'arbre décalerait leurs médaillons. */
 .node__origin {
-  margin-top: 0.4cqw;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  translate: -50% 0;
+  margin-top: 2.1cqw;
   min-width: 44px;
   min-height: 44px;
   display: grid;
   place-items: center;
-  font-size: max(0.85rem, 1.9cqw);
+  font-size: max(0.85rem, 10cqw);
   line-height: 1;
   color: color-mix(in oklab, var(--gold) 70%, var(--ink));
   cursor: pointer;
@@ -170,16 +194,16 @@
 
 @keyframes found {
   0% {
-    box-shadow: 0 0 0 0.24cqw color-mix(in oklab, var(--leaf) 60%, transparent);
+    box-shadow: 0 0 0 1.26cqw color-mix(in oklab, var(--leaf) 60%, transparent);
   }
 
   18%,
   70% {
-    box-shadow: 0 0 0 0.95cqw color-mix(in oklab, var(--accent) 70%, transparent);
+    box-shadow: 0 0 0 5cqw color-mix(in oklab, var(--accent) 70%, transparent);
   }
 
   100% {
-    box-shadow: 0 0 0 0.24cqw color-mix(in oklab, var(--leaf) 60%, transparent);
+    box-shadow: 0 0 0 1.26cqw color-mix(in oklab, var(--leaf) 60%, transparent);
   }
 }
 
