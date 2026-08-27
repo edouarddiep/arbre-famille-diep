@@ -5,6 +5,7 @@ import { MediaKind } from '../../../core/models/media-kind.enum';
 import { Person } from '../../../core/models/person.model';
 import { AudioService } from '../../../core/services/audio.service';
 import { computeAge, formatAge, formatDate } from '../../../core/utils/age.util';
+import { kinshipLabel, kinshipOf } from '../../../core/utils/kinship.util';
 import { FocusTrapDirective } from '../../../shared/directives/focus-trap.directive';
 import { MediaViewerComponent } from '../media-viewer/media-viewer.component';
 
@@ -42,6 +43,11 @@ export class PersonDialogComponent {
   protected readonly firstName = computed(() => this.person().name.split(' ')[0]);
   protected readonly age = computed(() => formatAge(this.person().birth.date));
   protected readonly initial = computed(() => this.person().name.charAt(0));
+  /** Même lien que sur l'arbre : la fiche ne parle pas depuis un point de vue. */
+  protected readonly kinship = computed(() => {
+    const bond = kinshipOf(this.person());
+    return bond ? kinshipLabel(bond) : '';
+  });
   protected readonly current = computed(() => this.person().media[this.slide()]);
 
   protected readonly birthLine = computed(() => {

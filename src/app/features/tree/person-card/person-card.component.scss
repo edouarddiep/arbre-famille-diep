@@ -4,7 +4,9 @@
    elle, et une génération plus nombreuse n'a qu'à réduire cette seule valeur. */
 :host {
   position: absolute;
-  translate: -50% -50%;
+  /* Ancrée sur le centre du médaillon, jamais sur le milieu de la carte : le
+     ruban peut grandir sans que le visage quitte la ligne de la branche. */
+  translate: -50% calc(max(2.6rem, var(--node-width, 19cqw) * 0.716) * -0.5);
   width: var(--node-width, 19cqw);
   container-type: inline-size;
   display: grid;
@@ -64,7 +66,7 @@
   gap: 0;
   width: 100%;
   margin-top: -7.9cqw;
-  padding: max(0.15rem, 2.2cqw) max(0.5rem, 8.4cqw);
+  padding: max(0.2rem, 2.6cqw) max(0.5rem, 7cqw) max(0.25rem, 3.4cqw);
   border: 1px solid color-mix(in oklab, var(--leaf) 42%, transparent);
   border-radius: 3px;
   background: color-mix(in oklab, var(--marble) 92%, var(--sky));
@@ -92,25 +94,17 @@
   }
 }
 
-/* Deux lignes serrées : la banderole reste fine, comme un ruban peint. */
-.plate__role {
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
+/* Deux lignes serrées : la banderole reste fine, comme un ruban peint. L'année
+   suffit — la parenté se lit sous le médaillon, la génération sur son bandeau. */
+.plate__year {
   font-size: max(0.5rem, 6.05cqw);
   font-weight: 500;
   line-height: 1.35;
-  letter-spacing: 0.14em;
-  text-indent: 0.14em;
-  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  text-indent: 0.18em;
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
   color: var(--ink-dim);
-}
-
-.plate__year::before {
-  content: '·';
-  margin: 0 0.5em;
 }
 
 .plate__name {
@@ -138,19 +132,13 @@
    elle se replie en deux lignes plutôt que de mordre sur le ruban voisin. */
 @container stage (max-width: 560px) {
   .plate {
-    padding-inline: max(0.15rem, 6.3cqw);
+    padding-inline: max(0.1rem, 4cqw);
   }
 
-  .plate__role {
-    flex-direction: column;
-    align-items: center;
+  .plate__year {
     font-size: max(0.42rem, 6.05cqw);
-    letter-spacing: 0.05em;
-    text-indent: 0.05em;
-  }
-
-  .plate__year::before {
-    content: none;
+    letter-spacing: 0.1em;
+    text-indent: 0.1em;
   }
 
   .plate__name {
@@ -163,28 +151,36 @@
   }
 }
 
-/* Hors du flux : sinon les cartes qui la portent seraient plus hautes que les
-   autres, et le centrage sur le point de l'arbre décalerait leurs médaillons. */
-.node__origin {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  translate: -50% 0;
-  margin-top: 2.1cqw;
-  min-width: 44px;
-  min-height: 44px;
-  display: grid;
-  place-items: center;
-  font-size: max(0.85rem, 10cqw);
-  line-height: 1;
-  color: color-mix(in oklab, var(--gold) 70%, var(--ink));
+/* Le lien de parenté, écrit à la main dans le ruban : il appartient à
+   l'étiquette, et ne flotte plus sous elle. Il reste cliquable pour rejoindre
+   les personnes citées. */
+.plate__kin {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 0.28em;
+  width: 100%;
+  margin-top: max(0.1rem, 1.6cqw);
+  font-family: var(--font-hand);
+  font-size: max(0.58rem, 9cqw);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  color: color-mix(in oklab, var(--gold-ink) 70%, var(--ink));
+  text-wrap: balance;
   cursor: pointer;
-  opacity: 0.55;
-  transition: opacity 0.3s var(--ease);
+
+  span {
+    white-space: nowrap;
+  }
+
+  transition: color 0.3s var(--ease);
 
   &:hover,
   &:focus-visible {
-    opacity: 1;
+    color: var(--gold-ink);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
   }
 }
 
@@ -210,5 +206,14 @@
 @media (prefers-reduced-motion: reduce) {
   .medallion {
     transition: none;
+  }
+}
+
+/* Un prénom composé ne se coupe pas : « de Vinh-Binh » doit donc tenir dans la
+   largeur du ruban, d'où une manuscrite d'un cran plus petite. Après la règle de
+   base, sinon la cascade donnerait le dernier mot à celle-ci. */
+@container stage (max-width: 560px) {
+  .plate__kin {
+    font-size: max(0.46rem, 9cqw);
   }
 }

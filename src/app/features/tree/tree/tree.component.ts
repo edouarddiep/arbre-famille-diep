@@ -1,6 +1,8 @@
 import { afterNextRender, ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
-import { ARC_LIFT, ARC_RATIO, BANDS, LINK_RATIO, STAGE_HEIGHT, STAGE_WIDTH, TREE_FOOT } from '../../../core/data/layout.data';
+import { ARC_LIFT, ARC_RATIO, BANDS, LINK_RATIO, Slot, STAGE_HEIGHT, STAGE_WIDTH, TREE_FOOT } from '../../../core/data/layout.data';
 import { FAMILY, PEOPLE_BY_ID } from '../../../core/data/family.data';
+import { Kinship, kinshipOf } from '../../../core/utils/kinship.util';
+import { BondType } from '../../../core/models/bond-type.enum';
 import { Generation } from '../../../core/models/generation.model';
 import { Person } from '../../../core/models/person.model';
 import { AudioService } from '../../../core/services/audio.service';
@@ -9,6 +11,7 @@ import { PersonDialogComponent } from '../person-dialog/person-dialog.component'
 
 const HIGHLIGHT_MS = 2600;
 const TRUNK_X = STAGE_WIDTH / 2;
+
 
 
 /** Tronc torsadé reliant deux générations, dans le repère de l'arbre. */
@@ -31,10 +34,19 @@ function linkBetween(from: number, to: number): Link {
   return { top: from - gap * 0.2, height, width: height * LINK_RATIO * 1.42 };
 }
 
+/** Alliance : anneaux posés entre les deux médaillons d'un couple. */
+interface Union {
+  readonly x: number;
+  readonly y: number;
+  readonly label: string;
+}
+
 interface Placed {
   readonly person: Person;
   readonly x: number;
   readonly y: number;
+  /** Naissance ou alliance : le lien qui rattache la personne à la famille. */
+  readonly kinship: Kinship | null;
 }
 
 interface Tier {
@@ -69,7 +81,10 @@ export class TreeComponent {
   /** Charpente de l'arbre, entièrement posée : aucune mesure du DOM. */
   protected readonly tiers: readonly Tier[] = BANDS.map(band => {
     const generation = FAMILY.find(item => item.id === band.generationId)!;
-    const people = band.slots.map(slot => ({ person: PEOPLE_BY_ID[slot.id], x: slot.x, y: slot.y }));
+    const people = band.slots.map(slot => {
+      const person = PEOPLE_BY_ID[slot.id];
+      return { person, x: slot.x, y: slot.y, kinship: kinshipOf(person) };
+    });
     const width = band.reach * 2;
     return {
       generation,
@@ -79,6 +94,24 @@ export class TreeComponent {
       nodeWidth: `${(band.nodeWidth / STAGE_WIDTH) * 100}cqw`,
       people,
     };
+  });
+
+  /** Couples de chaque génération, lus depuis les liens déclarés dans les données. */
+  protected readonly unions: readonly Union[] = BANDS.flatMap(band => {
+    const generation = FAMILY.find(item => item.id === band.generationId)!;
+    const slotOf = (id: string): Slot | undefined => band.slots.find(slot => slot.id === id);
+    return generation.bonds
+      .filter(bond => bond.type === BondType.Union && bond.members.length === 2)
+      .map(bond => ({
+        label: bond.members.map(member => member.name.split(' ')[0]).join(' & '),
+        slots: bond.members.map(member => slotOf(member.id)),
+      }))
+      .filter((bond): bond is { label: string; slots: Slot[] } => bond.slots.every(slot => slot !== undefined))
+      .map(({ label, slots: [left, right] }) => ({
+        x: (left.x + right.x) / 2,
+        y: left.y,
+        label: `${label}, mariés`,
+      }));
   });
 
   /** Troncs torsadés reliant chaque génération à la suivante. */
@@ -92,21 +125,11 @@ export class TreeComponent {
     afterNextRender(() => this.audio.startAmbient());
   }
 
-  protected parentsOf(person: Person): readonly string[] {
-    return person.parents ?? [];
-  }
 
-  protected filiationOf(person: Person): string {
-    if (!person.parents?.length) {
-      return '';
-    }
-    const names = person.parents.map(id => PEOPLE_BY_ID[id].name.split(' ')[0]).join(' · ');
-    return `${person.feminine ? 'fille' : 'fils'} de ${names}`;
-  }
 
-  /** Remonte à l'ascendance : amène les parents à l'écran et les signale. */
-  protected goToParents(parents: readonly string[]): void {
-    const cards = parents
+  /** Rejoint les personnes citées sous le médaillon : les amène à l'écran et les signale. */
+  protected goToKin(kin: readonly string[]): void {
+    const cards = kin
       .map(id => document.getElementById(`personne-${id}`))
       .filter((card): card is HTMLElement => card !== null);
     if (!cards.length) {
@@ -118,7 +141,7 @@ export class TreeComponent {
     window.scrollTo({ top: top + height / 2 - window.innerHeight / 2, behavior: 'smooth' });
 
     clearTimeout(this.highlightTimer);
-    this.highlighted.set(parents);
+    this.highlighted.set(kin);
     this.highlightTimer = setTimeout(() => this.highlighted.set([]), HIGHLIGHT_MS);
   }
 }

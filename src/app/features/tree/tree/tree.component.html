@@ -42,6 +42,18 @@
         [style.width.%]="(link.width / stageWidth) * 100" />
     }
 
+    <!-- Alliances : deux anneaux entre les visages d'un couple. -->
+    @for (union of unions; track $index) {
+      <span class="union" role="img" [attr.aria-label]="union.label"
+        [style.left.%]="(union.x / stageWidth) * 100" [style.top.%]="(union.y / stageHeight) * 100">
+        <svg viewBox="0 0 44 24" aria-hidden="true">
+          <circle cx="16" cy="12" r="8.4" />
+          <circle cx="28" cy="12" r="8.4" />
+        </svg>
+        <span class="union__tip">{{ union.label }}</span>
+      </span>
+    }
+
     @for (tier of tiers; track tier.generation.id) {
       <img class="arc" src="assets/art/arc.webp" alt="" loading="lazy"
         [style.top.%]="(tier.forkTop / stageHeight) * 100" [style.width.%]="tier.forkWidth" />
@@ -59,11 +71,11 @@
           [style.left.%]="(placed.x / stageWidth) * 100"
           [style.top.%]="(placed.y / stageHeight) * 100"
           [person]="placed.person"
-          [filiation]="filiationOf(placed.person)"
+          [kinship]="placed.kinship"
           [highlighted]="highlighted().includes(placed.person.id)"
           [attr.id]="'personne-' + placed.person.id"
           (selected)="focused.set($event)"
-          (ascend)="goToParents(parentsOf(placed.person))"
+          (ascend)="goToKin(placed.kinship?.ids ?? [])"
         />
       }
     }

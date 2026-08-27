@@ -27,8 +27,6 @@ export interface Person {
   readonly id: string;
   readonly name: string;
   readonly voice: string;
-  /** Lien de parenté affiché sous le médaillon. */
-  readonly role: string;
   readonly feminine: boolean;
   /** Origine évoquée sur sa fiche ; absente sous la génération du tronc. */
   readonly heritage?: Heritage;

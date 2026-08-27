@@ -7,10 +7,7 @@
 </button>
 
 <span class="plate">
-  <span class="plate__role">
-    <span>{{ person().role }}</span>
-    <span class="plate__year">{{ birthYear() }}</span>
-  </span>
+  <span class="plate__year">{{ birthYear() }}</span>
   <span class="plate__name">
     {{ person().name.split(' ')[0] }}
     @if (person().heritage; as origin) {
@@ -18,10 +15,13 @@
         origin === Heritage.Vietnamese ? 'Origine vietnamienne' : 'Origine grecque'"></span>
     }
   </span>
-</span>
 
-@if (filiation(); as origin) {
-  <button type="button" class="node__origin" [attr.aria-label]="'Remonter vers ' + origin" (click)="ascend.emit()">
-    ↑
-  </button>
-}
+  @if (kinship(); as bond) {
+    <button type="button" class="plate__kin" [attr.aria-label]="label() + ' — aller vers ' + bond.names.join(' et ')"
+      (click)="ascend.emit()">
+      @for (part of parts(); track part) {
+        <span>{{ part }}</span>
+      }
+    </button>
+  }
+</span>

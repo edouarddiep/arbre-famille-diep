@@ -367,10 +367,62 @@
 
 /* ------------------------------------------------------------ adaptations */
 
-@container stage (max-width: 560px) {
-  .node__origin {
-    display: none;
+/* Alliance : deux anneaux d'or entre les visages d'un couple, posés sur la même
+   pastille de marbre que les rubans — sans elle, l'or se perd dans le feuillage. */
+.union {
+  position: absolute;
+  translate: -50% -50%;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  padding: max(0.15rem, 0.5cqw) max(0.25rem, 0.8cqw);
+  border: 1px solid color-mix(in oklab, var(--leaf) 34%, transparent);
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--marble) 92%, var(--sky));
+  box-shadow: 0 1px 4px rgb(63 82 51 / 14%);
+  cursor: help;
+
+  svg {
+    display: block;
+    width: max(1.4rem, 3.2cqw);
+    height: auto;
+    fill: none;
+    stroke: color-mix(in oklab, var(--gold) 88%, var(--ink));
+    stroke-width: 2.4;
   }
+
+  &:hover,
+  &:focus-visible {
+    z-index: 5;
+    border-color: color-mix(in oklab, var(--gold) 55%, transparent);
+  }
+
+  &:hover .union__tip,
+  &:focus-visible .union__tip {
+    opacity: 1;
+    translate: -50% -0.25rem;
+  }
+}
+
+/* Ce que disent les anneaux, au survol : sans elle, le motif reste une énigme. */
+.union__tip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  translate: -50% 0.25rem;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid color-mix(in oklab, var(--leaf) 34%, transparent);
+  border-radius: 6px;
+  background: var(--marble);
+  box-shadow: 0 6px 18px -10px rgb(63 82 51 / 55%);
+  color: var(--ink-soft);
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s var(--ease), translate 0.25s var(--ease);
 }
 
 @media (max-width: 700px) {

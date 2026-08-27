@@ -40,7 +40,9 @@
               origin === Heritage.Vietnamese ? 'Origine vietnamienne' : 'Origine grecque'"></span>
           }
         </h2>
-        <p class="identity__role">{{ person().role }}</p>
+        @if (kinship(); as bond) {
+          <p class="identity__role">{{ bond }}</p>
+        }
         <p class="identity__year">{{ person().birth.date.slice(0, 4) }}</p>
       </div>
     </header>
